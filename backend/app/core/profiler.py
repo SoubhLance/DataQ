@@ -32,7 +32,7 @@ class DatasetProfiler:
         for col in self.columns:
             # Check object, string, or category, excluding numeric and datetime
             if (pd.api.types.is_object_dtype(self.df[col]) or 
-                pd.api.types.is_categorical_dtype(self.df[col]) or
+                isinstance(self.df[col].dtype, pd.CategoricalDtype) or
                 isinstance(self.df[col].dtype, pd.StringDtype)) and not self._is_datetime_col(col):
                 cols.append(col)
         return cols

@@ -40,27 +40,42 @@ class StatisticsService:
         profiler = DatasetProfiler(df)
         numeric_cols = profiler.numeric_columns
         
+        if len(df.columns) > 300 or len(numeric_cols) > 300:
+            return CorrelationResponse(
+                matrix={},
+                highly_correlated=[],
+                warning=f"Correlation computation skipped: dataset has {len(df.columns)} columns (limit is 300)."
+            )
+            
         if len(numeric_cols) < 2:
             return CorrelationResponse(matrix={}, highly_correlated=[])
             
         corr_df = df[numeric_cols].corr(method='pearson')
         matrix_dict = corr_df.replace({np.nan: None}).to_dict()
         
+        columns = list(corr_df.columns)
+        corr_matrix = corr_df.values
+        
+        # Upper triangle index pairs
+        rows, cols = np.triu_indices(len(columns), k=1)
+        mask = np.abs(corr_matrix[rows, cols]) >= threshold
+        
+        matching_rows = rows[mask]
+        matching_cols = cols[mask]
+        
         highly_correlated = []
-        columns = corr_df.columns
-        for i in range(len(columns)):
-            for j in range(i + 1, len(columns)):
-                col1 = columns[i]
-                col2 = columns[j]
-                val = corr_df.iloc[i, j]
-                if pd.notna(val) and (val >= threshold or val <= -threshold):
-                    highly_correlated.append({
-                        "column1": col1,
-                        "column2": col2,
-                        "correlation": round(float(val), 3),
-                        "recommendation": f"Pearson coefficient is high ({round(float(val), 2)}). Recommend dropping either '{col1}' or '{col2}'."
-                    })
-                    
+        for r, c in zip(matching_rows, matching_cols):
+            val = corr_matrix[r, c]
+            if pd.notna(val):
+                col1 = columns[r]
+                col2 = columns[c]
+                highly_correlated.append({
+                    "column1": col1,
+                    "column2": col2,
+                    "correlation": round(float(val), 3),
+                    "recommendation": f"Pearson coefficient is high ({round(float(val), 2)}). Recommend dropping either '{col1}' or '{col2}'."
+                })
+                
         return CorrelationResponse(
             matrix=matrix_dict,
             highly_correlated=highly_correlated
@@ -182,6 +197,9 @@ class StatisticsService:
         profiler = DatasetProfiler(df)
         numeric_cols = profiler.numeric_columns
         
+        if len(df.columns) > 300 or len(numeric_cols) > 300:
+            return []
+            
         if len(numeric_cols) < 2:
             return []
             

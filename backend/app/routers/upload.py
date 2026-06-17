@@ -14,10 +14,14 @@ from app.utils.dataframe_cache import cache_manager
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/upload", tags=["Upload"])
 
-def run_background_upload(temp_filepath: str, filename: str, session_id: str, task_id: str):
+def run_background_upload(temp_filepath: str, filename: str, content_type: str, session_id: str, task_id: str):
     """Background task to load dataframe and cache session state."""
     try:
         task_service.update_task_progress(task_id, 20, "Analyzing file format...")
+        
+        # Validate magic bytes and MIME content
+        from app.utils.validators import validate_file_content
+        validate_file_content(temp_filepath, filename, content_type)
         
         # Load DataFrame from file
         task_service.update_task_progress(task_id, 50, "Parsing dataset rows...")
@@ -29,6 +33,7 @@ def run_background_upload(temp_filepath: str, filename: str, session_id: str, ta
             filename=filename,
             df=df
         )
+        session_state.uploaded_filepath = temp_filepath
         cache_manager.set(session_id, session_state)
         
         # Task completed
@@ -40,7 +45,7 @@ def run_background_upload(temp_filepath: str, filename: str, session_id: str, ta
         }
         task_service.complete_task(task_id, result=result)
     except Exception as e:
-        logger.error(f"Background upload failed for session {session_id}: {str(e)}")
+        logger.exception(f"Background upload failed for session {session_id}")
         task_service.fail_task(task_id, str(e))
         if os.path.exists(temp_filepath):
             os.remove(temp_filepath)
@@ -79,10 +84,29 @@ async def upload_dataset(
         with open(temp_filepath, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
             
-        background_tasks.add_task(run_background_upload, temp_filepath, file.filename, session_id, task.task_id)
+        background_tasks.add_task(run_background_upload, temp_filepath, file.filename, file.content_type, session_id, task.task_id)
         
         return {
             "task_id": task.task_id,
             "session_id": session_id,
             "message": "File upload started in background."
         }
+
+@router.delete("/{session_id}")
+async def delete_session(session_id: str):
+    """
+    Manually delete session and its associated files from cache and disk.
+    """
+    from app.utils.validators import sanitize_session_id
+    from app.exceptions.session_exceptions import SessionNotFound
+    
+    session_id = sanitize_session_id(session_id)
+    
+    if cache_manager.peek(session_id) is None:
+        raise SessionNotFound(session_id)
+        
+    cache_manager.delete(session_id)
+    return {
+        "success": True,
+        "message": f"Session '{session_id}' and all associated files deleted successfully."
+    }

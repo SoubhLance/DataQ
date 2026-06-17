@@ -24,12 +24,12 @@ class ColumnService:
         df = session.current_df.copy()
         validate_columns_exist(df, columns)
         
-        df.drop(columns=columns, inplace=True)
+        df = df.drop(columns=columns)
         
         op = Operation(
             type="column_drop",
             params={"columns": columns},
-            generated_code=f"df.drop(columns={columns}, inplace=True)",
+            generated_code=f"df = df.drop(columns={columns})",
             description=f"Dropped column(s): {', '.join(columns)}"
         )
         
@@ -42,12 +42,12 @@ class ColumnService:
         df = session.current_df.copy()
         validate_columns_exist(df, [old_name])
         
-        df.rename(columns={old_name: new_name}, inplace=True)
+        df = df.rename(columns={old_name: new_name})
         
         op = Operation(
             type="column_rename",
             params={"old_name": old_name, "new_name": new_name},
-            generated_code=f"df.rename(columns={{'{old_name}': '{new_name}'}}, inplace=True)",
+            generated_code=f"df = df.rename(columns={{'{old_name}': '{new_name}'}})",
             description=f"Renamed column '{old_name}' to '{new_name}'"
         )
         
@@ -88,6 +88,22 @@ class ColumnService:
         session.operations.append(op)
 
     @staticmethod
+    def _label_encode_series(series: pd.Series) -> pd.Series:
+        """
+        Fit-transform a Pandas Series using LabelEncoder, preserving original NaN/None values.
+        Does not convert NaN to "nan" category.
+        """
+        res = series.copy()
+        non_null_mask = res.notna()
+        if non_null_mask.any():
+            le = LabelEncoder()
+            encoded = le.fit_transform(res[non_null_mask].astype(str))
+            res = res.astype(object)
+            res.loc[non_null_mask] = encoded
+            res = pd.to_numeric(res, errors='ignore')
+        return res
+
+    @staticmethod
     def preview_encoding(session: SessionState, column: str, method: EncodingMethod) -> ColumnEncodePreviewResponse:
         """
         Preview encoding changes on the first 10 rows.
@@ -101,9 +117,7 @@ class ColumnService:
         sample_before = df_temp[[column]].replace({pd.NA: None, float('nan'): None}).to_dict(orient="records")
         
         if method == EncodingMethod.LABEL:
-            le = LabelEncoder()
-            # Encode, casting to string to avoid comparison issues with mixed types
-            df_temp[column] = le.fit_transform(df_temp[column].astype(str))
+            df_temp[column] = ColumnService._label_encode_series(df_temp[column])
             sample_after = df_temp[[column]].replace({pd.NA: None, float('nan'): None}).to_dict(orient="records")
             
         elif method == EncodingMethod.ONEHOT:
@@ -126,13 +140,15 @@ class ColumnService:
         validate_columns_exist(df, [column])
         
         if method == EncodingMethod.LABEL:
-            le = LabelEncoder()
-            df[column] = le.fit_transform(df[column].astype(str))
+            df[column] = ColumnService._label_encode_series(df[column])
             
             code = (
                 f"from sklearn.preprocessing import LabelEncoder\n"
                 f"le_{column} = LabelEncoder()\n"
-                f"df['{column}'] = le_{column}.fit_transform(df['{column}'].astype(str))"
+                f"mask_{column} = df['{column}'].notna()\n"
+                f"if mask_{column}.any():\n"
+                f"    df.loc[mask_{column}, '{column}'] = le_{column}.fit_transform(df.loc[mask_{column}, '{column}'].astype(str))\n"
+                f"    df['{column}'] = pd.to_numeric(df['{column}'], errors='ignore')"
             )
             
         elif method == EncodingMethod.ONEHOT:
@@ -181,8 +197,7 @@ class ColumnService:
             col = params["column"]
             method = EncodingMethod(params["method"])
             if method == EncodingMethod.LABEL:
-                le = LabelEncoder()
-                df_copy[col] = le.fit_transform(df_copy[col].astype(str))
+                df_copy[col] = ColumnService._label_encode_series(df_copy[col])
             elif method == EncodingMethod.ONEHOT:
                 df_copy = pd.get_dummies(df_copy, columns=[col], prefix=col, dtype=int)
             return df_copy

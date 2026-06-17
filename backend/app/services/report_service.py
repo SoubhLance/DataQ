@@ -89,4 +89,8 @@ class ReportService:
         with open(report_filepath, "w") as f:
             json.dump(report, f, indent=2)
             
+        # Track for deletion on expiry/cleanup
+        if report_filepath not in session.report_filepaths:
+            session.report_filepaths.append(report_filepath)
+            
         return report

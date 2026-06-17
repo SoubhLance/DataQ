@@ -21,6 +21,11 @@ class SessionState:
         self.rows: int = len(df)
         self.columns: int = len(df.columns)
         self.operations: List[Operation] = []
+        
+        # Track associated files for safe deletion
+        self.uploaded_filepath = None
+        self.cleaned_filepaths = []
+        self.report_filepaths = []
 
     def touch(self) -> None:
         """Update last accessed timestamp."""

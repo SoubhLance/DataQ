@@ -29,6 +29,7 @@ class QualityResponse(BaseModel):
 class CorrelationResponse(BaseModel):
     matrix: Dict[str, Dict[str, Optional[float]]] = Field(..., description="Pearson correlation matrix.")
     highly_correlated: List[Dict[str, Any]] = Field(..., description="Pairs of columns with Pearson coefficient > 0.9 or < -0.9.")
+    warning: Optional[str] = Field(None, description="Warning message if computation was skipped.")
 
 class ImbalanceResponse(BaseModel):
     ratio: str = Field(..., description="Formatted class ratio representation (e.g., '90:10').")

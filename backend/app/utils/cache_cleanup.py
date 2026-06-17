@@ -43,7 +43,7 @@ class CacheCleanupThread(threading.Thread):
         timeout = settings.SESSION_TIMEOUT
         
         for session_id in session_keys:
-            state = cache_manager.get(session_id)
+            state = cache_manager.peek(session_id)
             if state:
                 elapsed = (now - state.last_accessed).total_seconds()
                 if elapsed > timeout:

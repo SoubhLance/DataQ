@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     # Session Configurations
     SESSION_TIMEOUT: int = 3600  # 1 hour in seconds
     MAX_HISTORY: int = 50       # Max undo history depth
+    ENABLE_AI: bool = False
     
     # Directories
     STORAGE_DIR: str = "app/storage"

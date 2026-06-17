@@ -25,7 +25,7 @@ def load_file_to_dataframe(file_path: str, original_filename: str) -> pd.DataFra
             raise UnsupportedFileType(original_filename, ['.csv', '.xlsx', '.json', '.parquet'])
     except UnsupportedFileType:
         raise
-    except Exception as e:
+    except (FileNotFoundError, ValueError, TypeError, UnicodeDecodeError, pd.errors.ParserError, pd.errors.EmptyDataError) as e:
         raise OperationError("File Loading", f"Failed to parse file: {str(e)}")
 
     if df.empty:
@@ -58,3 +58,41 @@ def save_dataframe_to_file(df: pd.DataFrame, file_path: str, format_ext: str) ->
         raise OperationError("File Export", f"Failed to write file to disk: {str(e)}")
         
     return file_path
+
+def cleanup_session_files(session) -> None:
+    """
+    Safely delete the uploaded, cleaned, and report files tracked by the session.
+    """
+    import os
+    import logging
+    from pathlib import Path
+    from app.config.settings import settings
+
+    logger = logging.getLogger(__name__)
+
+    def safe_delete(filepath: str, base_dir: str, file_type: str) -> None:
+        if not filepath:
+            return
+        try:
+            target = Path(filepath).resolve()
+            base = Path(base_dir).resolve()
+            if not target.is_relative_to(base):
+                logger.warning(f"Prevented deletion of file outside {base_dir}: {filepath}")
+                return
+            if target.exists():
+                os.remove(target)
+                logger.info(f"Deleted {file_type} file: {target}")
+        except Exception as e:
+            logger.error(f"Failed to delete {file_type} file {filepath}: {str(e)}")
+
+    # 1. Uploaded file
+    if session.uploaded_filepath:
+        safe_delete(session.uploaded_filepath, settings.UPLOADS_DIR, "uploaded")
+
+    # 2. Cleaned files
+    for filepath in session.cleaned_filepaths:
+        safe_delete(filepath, settings.CLEANED_DIR, "cleaned")
+
+    # 3. Report files
+    for filepath in session.report_filepaths:
+        safe_delete(filepath, settings.REPORTS_DIR, "report")

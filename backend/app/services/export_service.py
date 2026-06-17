@@ -28,4 +28,8 @@ class ExportService:
         # Save dataframe to disk
         save_dataframe_to_file(df, filepath, ext)
         
+        # Track for deletion on expiry/cleanup
+        if filepath not in session.cleaned_filepaths:
+            session.cleaned_filepaths.append(filepath)
+            
         return filepath

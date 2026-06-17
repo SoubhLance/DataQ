@@ -25,6 +25,13 @@ async def websocket_session_endpoint(websocket: WebSocket, session_id: str):
     """
     WebSocket channel for real-time progress update broadcasts for a given session.
     """
+    try:
+        from app.utils.validators import sanitize_session_id
+        session_id = sanitize_session_id(session_id)
+    except Exception:
+        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+        return
+        
     await ws_manager.connect(session_id, websocket)
     try:
         while True:

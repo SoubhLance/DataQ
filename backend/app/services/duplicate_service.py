@@ -63,7 +63,7 @@ class DuplicateService:
         
         # Create Operation
         keep_param_str = f"'{keep_val}'" if isinstance(keep_val, str) else str(keep_val)
-        code = f"df.drop_duplicates(keep={keep_param_str}, inplace=True)"
+        code = f"df = df.drop_duplicates(keep={keep_param_str})"
         
         op = Operation(
             type="duplicates",

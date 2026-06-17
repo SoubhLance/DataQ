@@ -71,11 +71,11 @@ class MissingService:
             code = f"df['{column}'] = df['{column}'].fillna(df['{column}'].mode()[0])"
             df[column] = df[column].fillna(imputed_val)
         elif strategy == MissingStrategy.CONSTANT:
-            repr_val = f"'{constant_value}'" if isinstance(constant_value, str) else str(constant_value)
+            repr_val = f"'{imputed_val}'" if isinstance(imputed_val, str) else str(imputed_val)
             code = f"df['{column}'] = df['{column}'].fillna({repr_val})"
             df[column] = df[column].fillna(imputed_val)
         elif strategy == MissingStrategy.DROP:
-            code = f"df.dropna(subset=['{column}'], inplace=True)"
+            code = f"df = df.dropna(subset=['{column}'])"
             df = df.dropna(subset=[column])
         else:
             raise OperationError("Imputation", f"Unsupported imputation strategy: {strategy}")
@@ -129,17 +129,30 @@ class MissingService:
         elif strategy == MissingStrategy.CONSTANT:
             if constant_value is None:
                 raise OperationError("Constant Imputation", "Constant strategy requires a non-null constant_value.")
-            # Coerce type if column is numeric
+            # Coerce type if column is numeric or bool
             if pd.api.types.is_integer_dtype(series):
                 try:
-                    return int(constant_value)
-                except ValueError:
-                    raise OperationError("Constant Imputation", f"Value '{constant_value}' is not convertible to integer.")
+                    f_val = float(constant_value)
+                    if not f_val.is_integer():
+                        raise ValueError("Value has a fractional part and cannot be cast to integer safely.")
+                    return int(f_val)
+                except (ValueError, TypeError) as e:
+                    raise OperationError("Constant Imputation", f"Value '{constant_value}' is not convertible to integer: {str(e)}")
             elif pd.api.types.is_float_dtype(series):
                 try:
                     return float(constant_value)
-                except ValueError:
-                    raise OperationError("Constant Imputation", f"Value '{constant_value}' is not convertible to float.")
+                except (ValueError, TypeError) as e:
+                    raise OperationError("Constant Imputation", f"Value '{constant_value}' is not convertible to float: {str(e)}")
+            elif pd.api.types.is_bool_dtype(series):
+                val_str = str(constant_value).strip().lower()
+                if val_str in ["true", "1", "yes", "t", "y"]:
+                    return True
+                elif val_str in ["false", "0", "no", "f", "n"]:
+                    return False
+                else:
+                    raise OperationError("Constant Imputation", f"Value '{constant_value}' is not convertible to boolean.")
+            elif pd.api.types.is_object_dtype(series) or isinstance(series.dtype, pd.StringDtype):
+                return str(constant_value)
             return constant_value
             
         elif strategy == MissingStrategy.DROP:

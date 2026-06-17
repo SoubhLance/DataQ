@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 from typing import Dict, Any, List
 from app.models.session_model import SessionState
@@ -9,6 +10,8 @@ from app.services.outlier_service import OutlierService
 from app.services.column_service import ColumnService
 from app.services.scaling_service import ScalingService
 from app.exceptions.dataset_exceptions import OperationError
+
+logger = logging.getLogger(__name__)
 
 class PipelineService:
     """
@@ -62,6 +65,7 @@ class PipelineService:
             try:
                 df = PipelineService._execute_operation_step(df, op)
             except Exception as e:
+                logger.exception(f"Error replaying operation step '{op.type}' with params {op.params}")
                 raise OperationError(
                     "Replay", 
                     f"Failed to replay step '{op.type}' with parameters {op.params}. Details: {str(e)}"

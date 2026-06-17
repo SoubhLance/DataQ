@@ -61,7 +61,12 @@ async def session_not_found_handler(request: Request, exc: SessionNotFound):
     logger.warning(f"Session error: {str(exc)}")
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,
-        content={"detail": "SESSION_NOT_FOUND", "message": str(exc)}
+        content={
+            "success": False,
+            "error_code": "SESSION_NOT_FOUND",
+            "message": str(exc),
+            "detail": "SESSION_NOT_FOUND"
+        }
     )
 
 @app.exception_handler(SessionExpired)
@@ -69,7 +74,12 @@ async def session_expired_handler(request: Request, exc: SessionExpired):
     logger.warning(f"Session expired: {str(exc)}")
     return JSONResponse(
         status_code=status.HTTP_410_GONE,
-        content={"detail": "SESSION_EXPIRED", "message": str(exc)}
+        content={
+            "success": False,
+            "error_code": "SESSION_EXPIRED",
+            "message": str(exc),
+            "detail": "SESSION_EXPIRED"
+        }
     )
 
 @app.exception_handler(UnsupportedFileType)
@@ -77,7 +87,13 @@ async def unsupported_file_type_handler(request: Request, exc: UnsupportedFileTy
     logger.warning(f"Validation error: {str(exc)}")
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
-        content={"detail": "UNSUPPORTED_FILE_TYPE", "message": str(exc), "allowed": exc.allowed}
+        content={
+            "success": False,
+            "error_code": "UNSUPPORTED_FILE_TYPE",
+            "message": str(exc),
+            "detail": "UNSUPPORTED_FILE_TYPE",
+            "allowed": exc.allowed
+        }
     )
 
 @app.exception_handler(FileTooLarge)
@@ -85,7 +101,13 @@ async def file_too_large_handler(request: Request, exc: FileTooLarge):
     logger.warning(f"Validation error: {str(exc)}")
     return JSONResponse(
         status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-        content={"detail": "FILE_TOO_LARGE", "message": str(exc), "limit_bytes": exc.limit}
+        content={
+            "success": False,
+            "error_code": "FILE_TOO_LARGE",
+            "message": str(exc),
+            "detail": "FILE_TOO_LARGE",
+            "limit_bytes": exc.limit
+        }
     )
 
 @app.exception_handler(ColumnNotFound)
@@ -93,7 +115,12 @@ async def column_not_found_handler(request: Request, exc: ColumnNotFound):
     logger.warning(f"Dataset error: {str(exc)}")
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,
-        content={"detail": "COLUMN_NOT_FOUND", "message": str(exc)}
+        content={
+            "success": False,
+            "error_code": "COLUMN_NOT_FOUND",
+            "message": str(exc),
+            "detail": "COLUMN_NOT_FOUND"
+        }
     )
 
 @app.exception_handler(InvalidDtype)
@@ -101,7 +128,12 @@ async def invalid_dtype_handler(request: Request, exc: InvalidDtype):
     logger.warning(f"Dataset error: {str(exc)}")
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content={"detail": "INVALID_DATATYPE_CAST", "message": str(exc)}
+        content={
+            "success": False,
+            "error_code": "INVALID_DATATYPE_CAST",
+            "message": str(exc),
+            "detail": "INVALID_DATATYPE_CAST"
+        }
     )
 
 @app.exception_handler(EmptyDataset)
@@ -109,7 +141,12 @@ async def empty_dataset_handler(request: Request, exc: EmptyDataset):
     logger.error(f"Dataset error: {str(exc)}")
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
-        content={"detail": "EMPTY_DATASET", "message": str(exc)}
+        content={
+            "success": False,
+            "error_code": "EMPTY_DATASET",
+            "message": str(exc),
+            "detail": "EMPTY_DATASET"
+        }
     )
 
 @app.exception_handler(OperationError)
@@ -117,7 +154,12 @@ async def operation_error_handler(request: Request, exc: OperationError):
     logger.error(f"Processing error during {exc.operation}: {exc.details}")
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
-        content={"detail": f"OPERATION_FAILED_{exc.operation.upper()}", "message": str(exc)}
+        content={
+            "success": False,
+            "error_code": f"OPERATION_FAILED_{exc.operation.upper()}",
+            "message": str(exc),
+            "detail": f"OPERATION_FAILED_{exc.operation.upper()}"
+        }
     )
 
 @app.exception_handler(ValidationException)
@@ -125,7 +167,12 @@ async def base_validation_handler(request: Request, exc: ValidationException):
     logger.warning(f"Validation error: {str(exc)}")
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
-        content={"detail": "VALIDATION_FAILED", "message": str(exc)}
+        content={
+            "success": False,
+            "error_code": "VALIDATION_FAILED",
+            "message": str(exc),
+            "detail": "VALIDATION_FAILED"
+        }
     )
 
 # --- Register Routers ---
@@ -138,8 +185,10 @@ app.include_router(columns.router, prefix=settings.API_V1_STR)
 app.include_router(scaling.router, prefix=settings.API_V1_STR)
 app.include_router(export.router, prefix=settings.API_V1_STR)
 app.include_router(visualization.router, prefix=settings.API_V1_STR)
-app.include_router(agent.router, prefix=settings.API_V1_STR)
 app.include_router(task.router, prefix=settings.API_V1_STR)
+
+if settings.ENABLE_AI:
+    app.include_router(agent.router, prefix=settings.API_V1_STR)
 
 @app.get("/")
 async def root():

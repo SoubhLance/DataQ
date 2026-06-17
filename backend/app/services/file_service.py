@@ -38,6 +38,10 @@ class FileService:
             # Validate extension and size
             validate_uploaded_file(file.filename, total_size)
             
+            # Harden upload validation: MIME and magic bytes
+            from app.utils.validators import validate_file_content
+            validate_file_content(temp_filepath, file.filename, file.content_type)
+            
             # Load DataFrame from file
             df = load_file_to_dataframe(temp_filepath, file.filename)
             
@@ -47,6 +51,7 @@ class FileService:
                 filename=file.filename,
                 df=df
             )
+            session_state.uploaded_filepath = temp_filepath
             
             # Cache the Session State
             cache_manager.set(session_id, session_state)

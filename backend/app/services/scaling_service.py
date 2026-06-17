@@ -31,8 +31,10 @@ class ScalingService:
         sample_before = df_temp[columns].replace({pd.NA: None, float('nan'): None}).to_dict(orient="records")
         
         scaler = ScalingService._get_scaler(method)
-        # Fit transform on copy
-        df_temp[columns] = scaler.fit_transform(df_temp[columns])
+        # Fit on full column(s)
+        scaler.fit(df[columns])
+        # Transform only the sample rows
+        df_temp[columns] = scaler.transform(df_temp[columns])
         
         sample_after = df_temp[columns].replace({pd.NA: None, float('nan'): None}).to_dict(orient="records")
         
