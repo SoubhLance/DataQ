@@ -1,0 +1,1278 @@
+{
+  "summary": {
+    "session_id": "e8ca5b16-ee3a-403b-946a-aef6d130e36d",
+    "filename": "SalReg1224Final.XLSX",
+    "created_at": "2026-06-17T15:08:23.099105",
+    "last_accessed": "2026-06-17T15:10:35.137339",
+    "shape": [
+      5561,
+      205
+    ],
+    "total_rows": 5561,
+    "total_columns": 205,
+    "operations_count": 0
+  },
+  "duplicates": {
+    "duplicate_rows": 0,
+    "duplicate_percent": 0.0
+  },
+  "missing": {
+    "columns_with_missing": 11,
+    "details": [
+      {
+        "column": "Pay scale type",
+        "missing_count": 2,
+        "percentage": 0.04,
+        "recommended_strategy": "median"
+      },
+      {
+        "column": "Pay Scale Area",
+        "missing_count": 2,
+        "percentage": 0.04,
+        "recommended_strategy": "mode"
+      },
+      {
+        "column": "Pay Scale Group",
+        "missing_count": 2,
+        "percentage": 0.04,
+        "recommended_strategy": "mode"
+      },
+      {
+        "column": "Pay Scale Level",
+        "missing_count": 2,
+        "percentage": 0.04,
+        "recommended_strategy": "mode"
+      },
+      {
+        "column": "CF Study Leave Ar",
+        "missing_count": 5561,
+        "percentage": 100.0,
+        "recommended_strategy": "drop"
+      },
+      {
+        "column": "CF RH Arr",
+        "missing_count": 5561,
+        "percentage": 100.0,
+        "recommended_strategy": "drop"
+      },
+      {
+        "column": "CF Others Arr.1",
+        "missing_count": 5561,
+        "percentage": 100.0,
+        "recommended_strategy": "drop"
+      },
+      {
+        "column": "CF IOD Arr",
+        "missing_count": 5561,
+        "percentage": 100.0,
+        "recommended_strategy": "drop"
+      },
+      {
+        "column": "CF ML Arr",
+        "missing_count": 5561,
+        "percentage": 100.0,
+        "recommended_strategy": "drop"
+      },
+      {
+        "column": "CF CCL Arr",
+        "missing_count": 5561,
+        "percentage": 100.0,
+        "recommended_strategy": "drop"
+      },
+      {
+        "column": "Remarks",
+        "missing_count": 4949,
+        "percentage": 88.99,
+        "recommended_strategy": "drop"
+      }
+    ]
+  },
+  "outliers": {
+    "columns_with_outliers": 163,
+    "details": [
+      {
+        "column": "Pay scale type",
+        "outliers_count": 800,
+        "percentage": 14.39,
+        "lower_bound": 4.0,
+        "upper_bound": 4.0
+      },
+      {
+        "column": "Basic Pay",
+        "outliers_count": 12,
+        "percentage": 0.22,
+        "lower_bound": -34085.27,
+        "upper_bound": 172943.45
+      },
+      {
+        "column": "Basic Pay Adjustment",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Basic Pay Arrears",
+        "outliers_count": 1086,
+        "percentage": 19.53,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "House Rent Allowance",
+        "outliers_count": 15,
+        "percentage": 0.27,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "House Rent Allow Arrears",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "HRA (Non-Urban Area)",
+        "outliers_count": 591,
+        "percentage": 10.63,
+        "lower_bound": -1195.5,
+        "upper_bound": 1992.5
+      },
+      {
+        "column": "HRA Adjust(Non-Urban)",
+        "outliers_count": 74,
+        "percentage": 1.33,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "HRA Arrears (Non-Urban)",
+        "outliers_count": 398,
+        "percentage": 7.16,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "IDA",
+        "outliers_count": 131,
+        "percentage": 2.36,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "IDA Arrears",
+        "outliers_count": 42,
+        "percentage": 0.76,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "SDA Arrears",
+        "outliers_count": 1046,
+        "percentage": 18.81,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "VDA Adjustment",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "VDA Arrears",
+        "outliers_count": 1039,
+        "percentage": 18.68,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Non Practicing Allowance",
+        "outliers_count": 4,
+        "percentage": 0.07,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Special Allow Adjustment",
+        "outliers_count": 164,
+        "percentage": 2.95,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Special Allow Arrears",
+        "outliers_count": 1196,
+        "percentage": 21.51,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "House Furnishing Allowanc",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "House Upkeep Allowance",
+        "outliers_count": 4,
+        "percentage": 0.07,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "House UpkeepAllow Arrears",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Domestic Assist Allowance",
+        "outliers_count": 4,
+        "percentage": 0.07,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Domestic Asst Allow Arr",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Cook Allowance",
+        "outliers_count": 122,
+        "percentage": 2.19,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Cook Allow Arr",
+        "outliers_count": 28,
+        "percentage": 0.5,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "LTC/LTCC Allowance",
+        "outliers_count": 130,
+        "percentage": 2.34,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "LTC Arr",
+        "outliers_count": 27,
+        "percentage": 0.49,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Conveyance Allow Car",
+        "outliers_count": 3,
+        "percentage": 0.05,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Vehicle Maint Allow",
+        "outliers_count": 4,
+        "percentage": 0.07,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Driver Allowance",
+        "outliers_count": 5,
+        "percentage": 0.09,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Transport Assistance",
+        "outliers_count": 6,
+        "percentage": 0.11,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Transport Asst Arr",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Children Education Allow.",
+        "outliers_count": 3,
+        "percentage": 0.05,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Hostel Allow.",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Professional Dev Allow",
+        "outliers_count": 3,
+        "percentage": 0.05,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Internet Allow",
+        "outliers_count": 5,
+        "percentage": 0.09,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Reim.ProfMembershipFees",
+        "outliers_count": 122,
+        "percentage": 2.19,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Reim.ProfMemb Arr",
+        "outliers_count": 29,
+        "percentage": 0.52,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Entertainment Allowance",
+        "outliers_count": 120,
+        "percentage": 2.16,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Entertainmt Allow Arr",
+        "outliers_count": 29,
+        "percentage": 0.52,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Lunch Allow-Meal Vouchers",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Kit / Dress Allowance",
+        "outliers_count": 3,
+        "percentage": 0.05,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Laundry/Washing Allowance",
+        "outliers_count": 5,
+        "percentage": 0.09,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Gardener Allowance",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Coal Industry Allow",
+        "outliers_count": 126,
+        "percentage": 2.27,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Coal Ind Allow Arr",
+        "outliers_count": 28,
+        "percentage": 0.5,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Addl Transport Assist",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CLA Arr",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Perks (for Old Data)",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Washing Allowance",
+        "outliers_count": 192,
+        "percentage": 3.45,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "TR Subsidy/Conv Reim Arr",
+        "outliers_count": 151,
+        "percentage": 2.72,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Medical Reimb(NonTax) NEx",
+        "outliers_count": 262,
+        "percentage": 4.71,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Medical Reim NEx Arr",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Attendance Bon Qtrly Adj",
+        "outliers_count": 5,
+        "percentage": 0.09,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Attendance Allow Arr",
+        "outliers_count": 529,
+        "percentage": 9.51,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Leave Encashment",
+        "outliers_count": 84,
+        "percentage": 1.51,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Leave Enc Arr",
+        "outliers_count": 60,
+        "percentage": 1.08,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "UG Allow Adj",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Performance Related Pay",
+        "outliers_count": 7,
+        "percentage": 0.13,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "OT CODE 1 (X/8)*H*2",
+        "outliers_count": 655,
+        "percentage": 11.78,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "OT CODE 1 (X/8)*H*2 Arr",
+        "outliers_count": 7,
+        "percentage": 0.13,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "OT CODE 2 (Y/8)*H*2",
+        "outliers_count": 54,
+        "percentage": 0.97,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Night Duty Allow@35",
+        "outliers_count": 85,
+        "percentage": 1.53,
+        "lower_bound": -450.0,
+        "upper_bound": 750.0
+      },
+      {
+        "column": "Night Duty Allow Arr",
+        "outliers_count": 11,
+        "percentage": 0.2,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Charge Allowance",
+        "outliers_count": 160,
+        "percentage": 2.88,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Charge Allow Adj",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Charge All Arr",
+        "outliers_count": 6,
+        "percentage": 0.11,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Reimb of Gas Cylinder",
+        "outliers_count": 1274,
+        "percentage": 22.91,
+        "lower_bound": 812.36,
+        "upper_bound": 812.36
+      },
+      {
+        "column": "Reimb of Gas Cylinder Arr",
+        "outliers_count": 20,
+        "percentage": 0.36,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Rescue Allowance",
+        "outliers_count": 23,
+        "percentage": 0.41,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Rescue Allow Adj",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "UG Allow Non-Ex Arr",
+        "outliers_count": 488,
+        "percentage": 8.78,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Misc Adv AdjustNOTTOUSE",
+        "outliers_count": 22,
+        "percentage": 0.4,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Misc Adv2Emp Arr",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Off Day Overtime*1",
+        "outliers_count": 376,
+        "percentage": 6.76,
+        "lower_bound": -11515.05,
+        "upper_bound": 19191.75
+      },
+      {
+        "column": "Off Day Overtime*1 Arr",
+        "outliers_count": 28,
+        "percentage": 0.5,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "UG Code Adjustment",
+        "outliers_count": 62,
+        "percentage": 1.11,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "UG Code3 Arr",
+        "outliers_count": 3,
+        "percentage": 0.05,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Public Holiday OT*1 Arr",
+        "outliers_count": 18,
+        "percentage": 0.32,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Public Holiday OT*2 Arr",
+        "outliers_count": 5,
+        "percentage": 0.09,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Travel Assist-BharatBhram",
+        "outliers_count": 66,
+        "percentage": 1.19,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Travel Assist--BhrtBh Arr",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Home LTC Nex",
+        "outliers_count": 53,
+        "percentage": 0.95,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Home LTC  Nex Arr",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CMPF Refund",
+        "outliers_count": 27,
+        "percentage": 0.49,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CMPF Refund Arr",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Pay Advance (claim)",
+        "outliers_count": 33,
+        "percentage": 0.59,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Annual Bonus",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "NCWA Arrear Gross",
+        "outliers_count": 7,
+        "percentage": 0.13,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "NCWA Arrear Gross Arr",
+        "outliers_count": 3,
+        "percentage": 0.05,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Spec reim non-taxable",
+        "outliers_count": 25,
+        "percentage": 0.45,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Medical Reimb. NonTax EXE",
+        "outliers_count": 19,
+        "percentage": 0.34,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Travel Allowance",
+        "outliers_count": 118,
+        "percentage": 2.12,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "EMPLOYEE PF",
+        "outliers_count": 20,
+        "percentage": 0.36,
+        "lower_bound": -6032.0,
+        "upper_bound": 28112.0
+      },
+      {
+        "column": "Employee VPF",
+        "outliers_count": 95,
+        "percentage": 1.71,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Professional Tax",
+        "outliers_count": 836,
+        "percentage": 15.03,
+        "lower_bound": 200.0,
+        "upper_bound": 200.0
+      },
+      {
+        "column": "Income Tax",
+        "outliers_count": 38,
+        "percentage": 0.68,
+        "lower_bound": -28631.5,
+        "upper_bound": 62436.5
+      },
+      {
+        "column": "Monthly Tax paid by Er.",
+        "outliers_count": 74,
+        "percentage": 1.33,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Professional Tax Arr",
+        "outliers_count": 65,
+        "percentage": 1.17,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Mgmt Trainee Bond Dedn",
+        "outliers_count": 35,
+        "percentage": 0.63,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Electricity Charges",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": -1392.39,
+        "upper_bound": 2320.65
+      },
+      {
+        "column": "Electricity charges Adjmt",
+        "outliers_count": 5,
+        "percentage": 0.09,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Benevolent fund recovery",
+        "outliers_count": 373,
+        "percentage": 6.71,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Canteen recovery",
+        "outliers_count": 54,
+        "percentage": 0.97,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Car Usage recovery",
+        "outliers_count": 5,
+        "percentage": 0.09,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Laptop Advance",
+        "outliers_count": 3,
+        "percentage": 0.05,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Medical Advance Recovery",
+        "outliers_count": 7,
+        "percentage": 0.13,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Natural Calamity Fund",
+        "outliers_count": 643,
+        "percentage": 11.56,
+        "lower_bound": 2.0,
+        "upper_bound": 2.0
+      },
+      {
+        "column": "Pay Advance Recovery",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Ee PF contribution",
+        "outliers_count": 20,
+        "percentage": 0.36,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Ee PF cont Arr",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CMPS EE Dedn",
+        "outliers_count": 39,
+        "percentage": 0.7,
+        "lower_bound": -2699.0,
+        "upper_bound": 14653.0
+      },
+      {
+        "column": "CMPS EE Adjustment",
+        "outliers_count": 3,
+        "percentage": 0.05,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CPRMSNE",
+        "outliers_count": 54,
+        "percentage": 0.97,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Farewell Fund",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "School Bus",
+        "outliers_count": 264,
+        "percentage": 4.75,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Festival Ded",
+        "outliers_count": 12,
+        "percentage": 0.22,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CIL Relief Fund Dedn",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "MCL Relief Fund Dedn",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Rent Deduction-CLA/COA",
+        "outliers_count": 69,
+        "percentage": 1.24,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Income tax_Adj(Hperks)",
+        "outliers_count": 74,
+        "percentage": 1.33,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Court Deduction",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "EE PF Cont Arr",
+        "outliers_count": 789,
+        "percentage": 14.19,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "EE VPF Cont Arr",
+        "outliers_count": 10,
+        "percentage": 0.18,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CPRMSNE LO",
+        "outliers_count": 33,
+        "percentage": 0.59,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Club Deduction",
+        "outliers_count": 129,
+        "percentage": 2.32,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "LIC premium",
+        "outliers_count": 168,
+        "percentage": 3.02,
+        "lower_bound": -8229.0,
+        "upper_bound": 13715.0
+      },
+      {
+        "column": "CMOAI Contribution",
+        "outliers_count": 106,
+        "percentage": 1.91,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Co-op Dedn(FixAmt)",
+        "outliers_count": 927,
+        "percentage": 16.67,
+        "lower_bound": -8100.0,
+        "upper_bound": 13500.0
+      },
+      {
+        "column": "Co-op Soc Dedn",
+        "outliers_count": 43,
+        "percentage": 0.77,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Union Deduction",
+        "outliers_count": 16,
+        "percentage": 0.29,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CMPF ARR",
+        "outliers_count": 5,
+        "percentage": 0.09,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Notional Basic",
+        "outliers_count": 12,
+        "percentage": 0.22,
+        "lower_bound": -31834.66,
+        "upper_bound": 173837.82
+      },
+      {
+        "column": "Gross salary",
+        "outliers_count": 32,
+        "percentage": 0.58,
+        "lower_bound": -59798.28,
+        "upper_bound": 300914.28
+      },
+      {
+        "column": "Total Deduction",
+        "outliers_count": 21,
+        "percentage": 0.38,
+        "lower_bound": -40384.575,
+        "upper_bound": 122900.905
+      },
+      {
+        "column": "Net Pay",
+        "outliers_count": 38,
+        "percentage": 0.68,
+        "lower_bound": -28890.89,
+        "upper_bound": 185659.35
+      },
+      {
+        "column": "Billable Days",
+        "outliers_count": 1040,
+        "percentage": 18.7,
+        "lower_bound": 21.0,
+        "upper_bound": 29.0
+      },
+      {
+        "column": "Absences Days",
+        "outliers_count": 1274,
+        "percentage": 22.91,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Paid Leave Days",
+        "outliers_count": 128,
+        "percentage": 2.3,
+        "lower_bound": -6.0,
+        "upper_bound": 10.0
+      },
+      {
+        "column": "Weekly Off",
+        "outliers_count": 674,
+        "percentage": 12.12,
+        "lower_bound": 5.0,
+        "upper_bound": 5.0
+      },
+      {
+        "column": "Physical Attendance",
+        "outliers_count": 705,
+        "percentage": 12.68,
+        "lower_bound": 9.0,
+        "upper_bound": 33.0
+      },
+      {
+        "column": "Rest Day",
+        "outliers_count": 842,
+        "percentage": 15.14,
+        "lower_bound": -1.5,
+        "upper_bound": 2.5
+      },
+      {
+        "column": "Casual Leave",
+        "outliers_count": 182,
+        "percentage": 3.27,
+        "lower_bound": -3.0,
+        "upper_bound": 5.0
+      },
+      {
+        "column": "Sick Leave",
+        "outliers_count": 936,
+        "percentage": 16.83,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Earned Leave",
+        "outliers_count": 510,
+        "percentage": 9.17,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Commuted Leave",
+        "outliers_count": 14,
+        "percentage": 0.25,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Special Leave Non-Ex",
+        "outliers_count": 10,
+        "percentage": 0.18,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Restricted Holiday",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Other Leaves",
+        "outliers_count": 43,
+        "percentage": 0.77,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "IOD",
+        "outliers_count": 1,
+        "percentage": 0.02,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF Billable Arr",
+        "outliers_count": 637,
+        "percentage": 11.45,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF Absence Arr",
+        "outliers_count": 629,
+        "percentage": 11.31,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF UG Days Arr",
+        "outliers_count": 236,
+        "percentage": 4.24,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF Paid Leave Arr",
+        "outliers_count": 441,
+        "percentage": 7.93,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF Weekly Off Arr",
+        "outliers_count": 70,
+        "percentage": 1.26,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF Phisical Att Arr",
+        "outliers_count": 154,
+        "percentage": 2.77,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF Rest Day Arr",
+        "outliers_count": 14,
+        "percentage": 0.25,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF Holiday Arr",
+        "outliers_count": 83,
+        "percentage": 1.49,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF CL Arr",
+        "outliers_count": 183,
+        "percentage": 3.29,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF SL Arr",
+        "outliers_count": 166,
+        "percentage": 2.99,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF EL Arr",
+        "outliers_count": 99,
+        "percentage": 1.78,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF CML Arr",
+        "outliers_count": 2,
+        "percentage": 0.04,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "CF SPL NEX Arr",
+        "outliers_count": 9,
+        "percentage": 0.16,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0
+      },
+      {
+        "column": "Night Shift Days",
+        "outliers_count": 85,
+        "percentage": 1.53,
+        "lower_bound": -9.0,
+        "upper_bound": 15.0
+      }
+    ]
+  },
+  "quality_score": {
+    "score": 0,
+    "warnings": [
+      "Column 'CF Study Leave Ar' has 100.0% missing values (-20 penalty).",
+      "Column 'CF RH Arr' has 100.0% missing values (-20 penalty).",
+      "Column 'CF Others Arr.1' has 100.0% missing values (-20 penalty).",
+      "Column 'CF IOD Arr' has 100.0% missing values (-20 penalty).",
+      "Column 'CF ML Arr' has 100.0% missing values (-20 penalty).",
+      "Column 'CF CCL Arr' has 100.0% missing values (-20 penalty).",
+      "Column 'Remarks' has 89.0% missing values (-20 penalty).",
+      "Column 'Pay scale type' has 14.4% outliers (-15 penalty).",
+      "Column 'Basic Pay Arrears' has 19.5% outliers (-15 penalty).",
+      "Column 'HRA (Non-Urban Area)' has 10.6% outliers (-15 penalty).",
+      "Column 'HRA Arrears (Non-Urban)' has 7.2% outliers (-15 penalty).",
+      "Column 'SDA Arrears' has 18.8% outliers (-15 penalty).",
+      "Column 'VDA Arrears' has 18.7% outliers (-15 penalty).",
+      "Column 'Special Allow Arrears' has 21.5% outliers (-15 penalty).",
+      "Column 'Attendance Allow Arr' has 9.5% outliers (-15 penalty).",
+      "Column 'OT CODE 1 (X/8)*H*2' has 11.8% outliers (-15 penalty).",
+      "Column 'Reimb of Gas Cylinder' has 22.9% outliers (-15 penalty).",
+      "Column 'UG Allow Non-Ex Arr' has 8.8% outliers (-15 penalty).",
+      "Column 'Off Day Overtime*1' has 6.8% outliers (-15 penalty).",
+      "Column 'Professional Tax' has 15.0% outliers (-15 penalty).",
+      "Column 'Benevolent fund recovery' has 6.7% outliers (-15 penalty).",
+      "Column 'Natural Calamity Fund' has 11.6% outliers (-15 penalty).",
+      "Column 'EE PF Cont Arr' has 14.2% outliers (-15 penalty).",
+      "Column 'Co-op Dedn(FixAmt)' has 16.7% outliers (-15 penalty).",
+      "Column 'Billable Days' has 18.7% outliers (-15 penalty).",
+      "Column 'Absences Days' has 22.9% outliers (-15 penalty).",
+      "Column 'Weekly Off' has 12.1% outliers (-15 penalty).",
+      "Column 'Physical Attendance' has 12.7% outliers (-15 penalty).",
+      "Column 'Rest Day' has 15.1% outliers (-15 penalty).",
+      "Column 'Sick Leave' has 16.8% outliers (-15 penalty).",
+      "Column 'Earned Leave' has 9.2% outliers (-15 penalty).",
+      "Column 'CF Billable Arr' has 11.5% outliers (-15 penalty).",
+      "Column 'CF Absence Arr' has 11.3% outliers (-15 penalty).",
+      "Column 'CF Paid Leave Arr' has 7.9% outliers (-15 penalty).",
+      "Categorical column 'Name of Employee' has high cardinality (-10 penalty).",
+      "Categorical column 'IFSC Code' has high cardinality (-10 penalty).",
+      "Categorical column 'PAN No.' has high cardinality (-10 penalty)."
+    ]
+  }
+}
