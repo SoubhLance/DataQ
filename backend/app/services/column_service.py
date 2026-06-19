@@ -100,7 +100,7 @@ class ColumnService:
             encoded = le.fit_transform(res[non_null_mask].astype(str))
             res = res.astype(object)
             res.loc[non_null_mask] = encoded
-            res = pd.to_numeric(res, errors='ignore')
+            res = pd.to_numeric(res, errors='coerce')
         return res
 
     @staticmethod

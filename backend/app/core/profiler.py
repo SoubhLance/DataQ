@@ -56,7 +56,7 @@ class DatasetProfiler:
                 return False
             try:
                 # If we can parse the sample values successfully, classify it
-                pd.to_datetime(sample, errors='raise')
+                pd.to_datetime(sample, errors='raise', format='mixed')
                 return True
             except (ValueError, TypeError, OverflowError):
                 return False

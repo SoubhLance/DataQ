@@ -52,7 +52,7 @@ def validate_column_dtype_compatibility(df: pd.DataFrame, col: str, target_dtype
             
     elif target == "datetime":
         try:
-            pd.to_datetime(series, errors='raise')
+            pd.to_datetime(series, errors='raise', format='mixed')
         except (ValueError, TypeError, OverflowError) as e:
             raise InvalidDtype(col, target_dtype, f"Values cannot be parsed as date/time: {str(e)}")
             
