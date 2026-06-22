@@ -1,0 +1,1123 @@
+{
+  "algorithms": [
+    {
+      "id": "logistic_regression",
+      "name": "Logistic Regression",
+      "problem_type": [
+        "classification"
+      ],
+      "description": "A linear model for binary or multiclass classification that estimates probability of class membership. Best for problems where the relationship between features and outcome is roughly linear, such as disease risk prediction, churn prediction, credit approval, or spam detection. Works well on small to medium tabular datasets with numeric and encoded categorical features.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "very_fast",
+      "accuracy_profile": "moderate, strong baseline, struggles with nonlinear patterns",
+      "pros": [
+        "Highly interpretable coefficients",
+        "Fast to train",
+        "Works well with limited data",
+        "Outputs calibrated probabilities"
+      ],
+      "cons": [
+        "Assumes linear decision boundary",
+        "Weak with complex feature interactions",
+        "Sensitive to outliers and multicollinearity"
+      ],
+      "preprocessing_needs": [
+        "scaling (standard/minmax)",
+        "encoding categoricals",
+        "handling multicollinearity"
+      ],
+      "tags": [
+        "baseline",
+        "binary_classification",
+        "medical_diagnosis",
+        "risk_scoring",
+        "interpretable"
+      ]
+    },
+    {
+      "id": "decision_tree",
+      "name": "Decision Tree",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "A rule-based model that splits data on feature thresholds, forming a tree of decisions. Good for problems where you want human-readable decision rules, such as loan approval logic, medical triage rules, or simple eligibility checks. Handles mixed data types and nonlinear relationships natively.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "very_high",
+      "speed": "very_fast",
+      "accuracy_profile": "moderate, prone to overfitting if unpruned",
+      "pros": [
+        "Extremely interpretable, visualizable",
+        "No scaling required",
+        "Handles nonlinear relationships",
+        "Handles mixed numeric/categorical data"
+      ],
+      "cons": [
+        "Overfits easily without pruning/depth limits",
+        "Unstable - small data changes alter tree structure",
+        "Lower accuracy than ensemble methods"
+      ],
+      "preprocessing_needs": [
+        "minimal - handles missing/categorical natively in most implementations",
+        "encoding for sklearn implementation"
+      ],
+      "tags": [
+        "interpretable",
+        "rule_based",
+        "baseline",
+        "explainable_ai"
+      ]
+    },
+    {
+      "id": "random_forest",
+      "name": "Random Forest",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "An ensemble of decision trees trained on random subsets of data and features, averaging predictions for robustness. A strong general-purpose default for tabular classification and regression tasks including heart disease prediction, fraud detection, customer churn, and price estimation. Handles nonlinearity, missing values reasonably, and resists overfitting better than single trees.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "medium",
+      "speed": "medium",
+      "accuracy_profile": "high, robust, strong default choice",
+      "pros": [
+        "Robust to overfitting",
+        "Handles nonlinear relationships well",
+        "Provides feature importance",
+        "Requires little hyperparameter tuning to get decent results",
+        "Robust to outliers"
+      ],
+      "cons": [
+        "Less interpretable than single trees",
+        "Slower at inference with many trees",
+        "Can struggle with very high-dimensional sparse data"
+      ],
+      "preprocessing_needs": [
+        "minimal scaling needed",
+        "encoding categoricals",
+        "handle missing values"
+      ],
+      "tags": [
+        "general_purpose",
+        "recommended_default",
+        "tabular_data",
+        "medical_diagnosis",
+        "robust",
+        "feature_importance"
+      ]
+    },
+    {
+      "id": "xgboost",
+      "name": "XGBoost",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "A gradient boosting framework that builds trees sequentially, each correcting errors of the previous one, with strong regularization. Excellent when you need to boost accuracy beyond what simpler models achieve, common in competitive ML, credit scoring, disease prediction, and structured/tabular prediction tasks. Often the go-to when baseline accuracy is too low.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "low-medium",
+      "speed": "medium",
+      "accuracy_profile": "very_high, often best-in-class on tabular data",
+      "pros": [
+        "Often highest accuracy on tabular data",
+        "Built-in regularization reduces overfitting",
+        "Handles missing values natively",
+        "Feature importance available",
+        "Highly tunable"
+      ],
+      "cons": [
+        "More hyperparameters to tune",
+        "Slower training than simpler models",
+        "Less interpretable",
+        "Can overfit without careful tuning on small data"
+      ],
+      "preprocessing_needs": [
+        "encoding categoricals",
+        "minimal scaling needed",
+        "handles missing values internally"
+      ],
+      "tags": [
+        "accuracy_booster",
+        "competition_grade",
+        "tabular_data",
+        "medical_diagnosis",
+        "gradient_boosting"
+      ]
+    },
+    {
+      "id": "lightgbm",
+      "name": "LightGBM",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "A gradient boosting framework optimized for speed and memory efficiency using leaf-wise tree growth and histogram-based splitting. Ideal when you need fast training and inference on large tabular datasets without sacrificing much accuracy, such as real-time scoring systems or large-scale structured datasets with many rows.",
+      "dataset_size_fit": "medium-to-large",
+      "interpretability": "low-medium",
+      "speed": "very_fast",
+      "accuracy_profile": "very_high, comparable to XGBoost with faster training",
+      "pros": [
+        "Fastest of the major boosting libraries",
+        "Lower memory usage",
+        "Handles large datasets efficiently",
+        "Native categorical feature support"
+      ],
+      "cons": [
+        "Can overfit on small datasets (leaf-wise growth)",
+        "Less interpretable",
+        "Sensitive to hyperparameters on small data"
+      ],
+      "preprocessing_needs": [
+        "minimal - native categorical support",
+        "handles missing values internally"
+      ],
+      "tags": [
+        "fastest",
+        "large_datasets",
+        "speed_priority",
+        "gradient_boosting",
+        "real_time"
+      ]
+    },
+    {
+      "id": "catboost",
+      "name": "CatBoost",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "A gradient boosting library designed to handle categorical features natively without manual encoding, using ordered boosting to reduce overfitting. Best suited for datasets with many categorical columns, such as customer data, survey data, or business datasets where one-hot encoding would explode dimensionality.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "low-medium",
+      "speed": "medium",
+      "accuracy_profile": "high, especially strong with categorical-heavy data",
+      "pros": [
+        "Best native handling of categorical features",
+        "Less prone to overfitting than other boosters",
+        "Good default hyperparameters",
+        "Robust on small-to-medium data"
+      ],
+      "cons": [
+        "Slower training than LightGBM",
+        "Less community tooling than XGBoost",
+        "Memory heavier"
+      ],
+      "preprocessing_needs": [
+        "none for categoricals - native support",
+        "minimal scaling needed"
+      ],
+      "tags": [
+        "categorical_heavy",
+        "gradient_boosting",
+        "low_overfitting",
+        "business_data"
+      ]
+    },
+    {
+      "id": "svm",
+      "name": "Support Vector Machine (SVM)",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "A model that finds the optimal boundary (hyperplane) maximizing margin between classes, using kernels to handle nonlinear data. Effective on smaller datasets with clear margin separation, such as text classification, image classification on small datasets, or bioinformatics classification tasks with high-dimensional but limited samples.",
+      "dataset_size_fit": "small",
+      "interpretability": "low",
+      "speed": "slow_on_large_data",
+      "accuracy_profile": "high on small/clean datasets, degrades on large noisy data",
+      "pros": [
+        "Effective in high-dimensional spaces",
+        "Works well with clear margin of separation",
+        "Kernel trick handles nonlinearity"
+      ],
+      "cons": [
+        "Scales poorly with dataset size (slow on large data)",
+        "Sensitive to feature scaling",
+        "Hard to interpret",
+        "Requires careful kernel/hyperparameter selection"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling (standard scaler)",
+        "encoding categoricals"
+      ],
+      "tags": [
+        "small_data",
+        "high_dimensional",
+        "bioinformatics",
+        "text_classification"
+      ]
+    },
+    {
+      "id": "knn",
+      "name": "K-Nearest Neighbors (KNN)",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "A simple instance-based model that predicts based on the majority class or average of the nearest data points. Useful for quick baselines and recommendation-style problems with small, well-scaled datasets, such as basic pattern matching or low-dimensional classification tasks.",
+      "dataset_size_fit": "small",
+      "interpretability": "medium",
+      "speed": "slow_at_inference_large_data",
+      "accuracy_profile": "moderate, very dependent on scaling and k choice",
+      "pros": [
+        "Simple, no training phase",
+        "Naturally handles multiclass",
+        "Good for low-dimensional, well-clustered data"
+      ],
+      "cons": [
+        "Slow inference on large datasets",
+        "Very sensitive to feature scaling",
+        "Suffers from curse of dimensionality",
+        "Sensitive to irrelevant features"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling",
+        "dimensionality reduction recommended for high-dim data"
+      ],
+      "tags": [
+        "baseline",
+        "small_data",
+        "simple",
+        "low_dimensional"
+      ]
+    },
+    {
+      "id": "naive_bayes",
+      "name": "Naive Bayes",
+      "problem_type": [
+        "classification"
+      ],
+      "description": "A probabilistic classifier based on Bayes theorem assuming feature independence. Extremely fast and effective for text classification, spam detection, sentiment analysis, and quick baselines on categorical-heavy data even with limited samples.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "high",
+      "speed": "very_fast",
+      "accuracy_profile": "moderate, strong on text/categorical data despite independence assumption",
+      "pros": [
+        "Extremely fast training and inference",
+        "Works well with small data",
+        "Good baseline for text classification",
+        "Handles high-dimensional sparse data well"
+      ],
+      "cons": [
+        "Independence assumption rarely holds in practice",
+        "Weaker on continuous feature interactions",
+        "Can be outperformed easily by tree ensembles on tabular data"
+      ],
+      "preprocessing_needs": [
+        "minimal",
+        "discretization sometimes helps continuous features"
+      ],
+      "tags": [
+        "fastest",
+        "text_classification",
+        "spam_detection",
+        "baseline",
+        "small_data"
+      ]
+    },
+    {
+      "id": "linear_regression",
+      "name": "Linear Regression",
+      "problem_type": [
+        "regression"
+      ],
+      "description": "A simple model estimating a linear relationship between features and a continuous target. Suitable for price prediction, trend estimation, or any continuous outcome where relationships are approximately linear, such as house price or salary prediction baselines.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "very_high",
+      "speed": "very_fast",
+      "accuracy_profile": "moderate, strong baseline, weak with nonlinear data",
+      "pros": [
+        "Highly interpretable coefficients",
+        "Very fast",
+        "Good baseline for regression tasks"
+      ],
+      "cons": [
+        "Assumes linearity",
+        "Sensitive to outliers",
+        "Struggles with feature interactions"
+      ],
+      "preprocessing_needs": [
+        "scaling recommended",
+        "handle multicollinearity",
+        "outlier treatment"
+      ],
+      "tags": [
+        "baseline",
+        "regression",
+        "interpretable",
+        "price_prediction"
+      ]
+    },
+    {
+      "id": "ridge_lasso",
+      "name": "Ridge/Lasso Regression",
+      "problem_type": [
+        "regression"
+      ],
+      "description": "Regularized linear regression variants that penalize large coefficients to reduce overfitting and, in Lasso's case, perform feature selection. Useful when you have many correlated features or want automatic feature elimination in continuous prediction tasks like financial forecasting.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "very_fast",
+      "accuracy_profile": "moderate-high, better generalization than plain linear regression on noisy/correlated data",
+      "pros": [
+        "Reduces overfitting via regularization",
+        "Lasso performs automatic feature selection",
+        "Interpretable",
+        "Handles multicollinearity better than plain linear regression"
+      ],
+      "cons": [
+        "Still assumes linear relationships",
+        "Requires tuning regularization strength",
+        "Lasso can be unstable with highly correlated features"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling",
+        "encoding categoricals"
+      ],
+      "tags": [
+        "regularized",
+        "feature_selection",
+        "regression",
+        "interpretable"
+      ]
+    },
+    {
+      "id": "gradient_boosting",
+      "name": "Gradient Boosting Machine (GBM)",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "The classic sequential boosting algorithm that builds trees to correct prior errors, predecessor to XGBoost/LightGBM/CatBoost. Good general accuracy booster for tabular data when specialized libraries are unavailable or unnecessary complexity is undesired.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "low-medium",
+      "speed": "slow-medium",
+      "accuracy_profile": "high, but slower and less optimized than XGBoost/LightGBM",
+      "pros": [
+        "Strong accuracy on tabular data",
+        "Feature importance available",
+        "Well understood, widely supported"
+      ],
+      "cons": [
+        "Slower than modern boosting libraries",
+        "Easy to overfit without tuning",
+        "Sequential nature limits parallelism"
+      ],
+      "preprocessing_needs": [
+        "encoding categoricals",
+        "minimal scaling needed"
+      ],
+      "tags": [
+        "accuracy_booster",
+        "gradient_boosting",
+        "tabular_data"
+      ]
+    },
+    {
+      "id": "mlp_neural_network",
+      "name": "Multi-Layer Perceptron (Neural Network)",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "A feedforward neural network capable of learning complex nonlinear patterns given sufficient data. Best when dataset is large, feature interactions are highly nonlinear, and tree-based models plateau in accuracy, such as complex multi-modal tabular tasks or when combined with embeddings.",
+      "dataset_size_fit": "medium-to-large",
+      "interpretability": "very_low",
+      "speed": "slow_to_train",
+      "accuracy_profile": "high with enough data, can underperform tree models on small tabular data",
+      "pros": [
+        "Can model highly complex nonlinear relationships",
+        "Flexible architecture",
+        "Scales well with more data"
+      ],
+      "cons": [
+        "Needs more data than tree ensembles to perform well",
+        "Black box, hard to interpret",
+        "Requires careful tuning (layers, learning rate, regularization)",
+        "Often outperformed by gradient boosting on small/medium tabular data"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling",
+        "encoding categoricals",
+        "larger dataset preferred"
+      ],
+      "tags": [
+        "deep_learning",
+        "large_data",
+        "nonlinear",
+        "complex_patterns"
+      ]
+    },
+    {
+      "id": "kmeans",
+      "name": "K-Means Clustering",
+      "problem_type": [
+        "clustering"
+      ],
+      "description": "An unsupervised algorithm that partitions data into k clusters by minimizing within-cluster variance. Useful for customer segmentation, anomaly grouping, or exploratory analysis when there's no labeled target, such as grouping patients by symptom similarity.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "medium",
+      "speed": "fast",
+      "accuracy_profile": "n/a - unsupervised, quality measured via silhouette score/inertia",
+      "pros": [
+        "Fast and scalable",
+        "Simple to understand and implement",
+        "Works well with well-separated spherical clusters"
+      ],
+      "cons": [
+        "Requires specifying k in advance",
+        "Struggles with non-spherical clusters",
+        "Sensitive to outliers and scaling"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling",
+        "outlier treatment recommended"
+      ],
+      "tags": [
+        "unsupervised",
+        "clustering",
+        "segmentation",
+        "exploratory"
+      ]
+    },
+    {
+      "id": "dbscan",
+      "name": "DBSCAN",
+      "problem_type": [
+        "clustering"
+      ],
+      "description": "A density-based clustering algorithm that finds arbitrarily shaped clusters and naturally identifies outliers as noise. Good for anomaly detection and clustering tasks where cluster count is unknown and shapes are irregular, such as fraud pattern detection.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "medium",
+      "speed": "medium",
+      "accuracy_profile": "n/a - unsupervised, strong for irregular cluster shapes and noise detection",
+      "pros": [
+        "No need to specify number of clusters",
+        "Naturally detects outliers/noise",
+        "Handles arbitrarily shaped clusters"
+      ],
+      "cons": [
+        "Sensitive to epsilon/min_samples parameters",
+        "Struggles with varying density clusters",
+        "Scales poorly to very large datasets"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling",
+        "careful parameter tuning"
+      ],
+      "tags": [
+        "unsupervised",
+        "anomaly_detection",
+        "density_based",
+        "outlier_detection"
+      ]
+    },
+    {
+      "id": "adaboost",
+      "name": "AdaBoost",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "An early boosting algorithm that combines weak learners (usually shallow trees) by reweighting misclassified samples. Useful as a lighter-weight boosting option when XGBoost/LightGBM feel like overkill for a smaller dataset, common in face detection and simpler tabular boosting tasks.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "low-medium",
+      "speed": "fast",
+      "accuracy_profile": "moderate-high, sensitive to noisy data and outliers",
+      "pros": [
+        "Simple boosting concept",
+        "Less prone to overfitting than single deep trees",
+        "Fast on small/medium data"
+      ],
+      "cons": [
+        "Sensitive to noisy data and outliers",
+        "Outperformed by XGBoost/LightGBM on most tabular tasks",
+        "Sequential, less parallelizable"
+      ],
+      "preprocessing_needs": [
+        "encoding categoricals",
+        "outlier treatment recommended"
+      ],
+      "tags": [
+        "boosting",
+        "lightweight",
+        "small_data"
+      ]
+    },
+    {
+      "id": "elastic_net",
+      "name": "Elastic Net Regression",
+      "problem_type": [
+        "regression"
+      ],
+      "description": "Combines Ridge and Lasso penalties for regression, balancing feature selection with coefficient shrinkage. Good when you have many correlated features and want both regularization and some automatic feature elimination, such as genomics or high-dimensional financial data.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "very_fast",
+      "accuracy_profile": "moderate-high, good generalization on correlated high-dim features",
+      "pros": [
+        "Balances L1 and L2 regularization",
+        "Handles correlated features better than pure Lasso",
+        "Interpretable"
+      ],
+      "cons": [
+        "Two hyperparameters to tune (alpha, l1_ratio)",
+        "Still assumes linear relationships"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling"
+      ],
+      "tags": [
+        "regularized",
+        "regression",
+        "high_dimensional"
+      ]
+    },
+    {
+      "id": "stacking_ensemble",
+      "name": "Stacking Ensemble",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "Combines predictions from multiple diverse models (e.g. random forest, xgboost, logistic regression) using a meta-model to learn optimal blending. Used when squeezing out maximum accuracy matters more than simplicity or speed, common in competitive ML and high-stakes prediction tasks like medical diagnosis ensembles.",
+      "dataset_size_fit": "medium-to-large",
+      "interpretability": "very_low",
+      "speed": "slow",
+      "accuracy_profile": "highest achievable, combines strengths of multiple models",
+      "pros": [
+        "Often best raw accuracy",
+        "Combines diverse model strengths",
+        "Reduces variance of individual models"
+      ],
+      "cons": [
+        "Complex to build and maintain",
+        "Slow training and inference",
+        "Very low interpretability",
+        "Risk of overfitting meta-model"
+      ],
+      "preprocessing_needs": [
+        "depends on base models used"
+      ],
+      "tags": [
+        "ensemble",
+        "max_accuracy",
+        "competition_grade",
+        "complex"
+      ]
+    },
+    {
+      "id": "pca",
+      "name": "Principal Component Analysis (PCA)",
+      "problem_type": [
+        "dimensionality_reduction"
+      ],
+      "description": "An unsupervised technique that projects high-dimensional data onto fewer orthogonal components capturing maximum variance. Used before modeling when you have too many features relative to samples, or for visualization of high-dimensional data such as gene expression or image features in 2D/3D.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "low",
+      "speed": "fast",
+      "accuracy_profile": "n/a - preprocessing/reduction step, not a predictor",
+      "pros": [
+        "Reduces dimensionality and noise",
+        "Speeds up downstream models",
+        "Useful for visualization"
+      ],
+      "cons": [
+        "Components lose direct interpretability",
+        "Assumes linear relationships between features",
+        "Sensitive to scaling"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling before PCA"
+      ],
+      "tags": [
+        "dimensionality_reduction",
+        "unsupervised",
+        "preprocessing",
+        "visualization"
+      ]
+    },
+    {
+      "id": "tsne_umap",
+      "name": "t-SNE / UMAP",
+      "problem_type": [
+        "dimensionality_reduction"
+      ],
+      "description": "Nonlinear dimensionality reduction techniques primarily used for visualizing high-dimensional data in 2D/3D while preserving local structure. Common for exploring clusters in embeddings, gene expression, or customer segmentation visually before applying clustering models.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "low",
+      "speed": "slow_on_large_data",
+      "accuracy_profile": "n/a - visualization/exploration tool, not predictive",
+      "pros": [
+        "Captures nonlinear structure better than PCA",
+        "Excellent for visual cluster exploration"
+      ],
+      "cons": [
+        "Not meant for downstream modeling, only visualization",
+        "Slow on large datasets",
+        "Results sensitive to hyperparameters (perplexity, n_neighbors)"
+      ],
+      "preprocessing_needs": [
+        "scaling recommended",
+        "PCA pre-reduction for very high-dim data"
+      ],
+      "tags": [
+        "visualization",
+        "dimensionality_reduction",
+        "exploratory",
+        "nonlinear"
+      ]
+    },
+    {
+      "id": "arima",
+      "name": "ARIMA",
+      "problem_type": [
+        "time_series"
+      ],
+      "description": "A classical statistical model for forecasting time series data based on autoregression, differencing, and moving averages. Best for univariate time series forecasting with clear trend/seasonality such as sales forecasting, stock-adjacent trend analysis, or demand prediction.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "fast",
+      "accuracy_profile": "moderate-high on stationary/seasonal series, weak with complex nonlinear patterns",
+      "pros": [
+        "Well understood statistical foundation",
+        "Good for univariate forecasting with trend/seasonality",
+        "Interpretable parameters"
+      ],
+      "cons": [
+        "Requires stationarity (differencing needed)",
+        "Struggles with multivariate or highly nonlinear series",
+        "Manual parameter selection (p,d,q) needed"
+      ],
+      "preprocessing_needs": [
+        "stationarity check/differencing",
+        "seasonal decomposition"
+      ],
+      "tags": [
+        "time_series",
+        "forecasting",
+        "statistical",
+        "univariate"
+      ]
+    },
+    {
+      "id": "prophet",
+      "name": "Prophet",
+      "problem_type": [
+        "time_series"
+      ],
+      "description": "A forecasting tool designed for business time series with strong seasonal patterns and holiday effects, robust to missing data and outliers. Good for sales/demand forecasting with multiple seasonality (daily, weekly, yearly) without deep statistical tuning.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "medium-high",
+      "speed": "fast",
+      "accuracy_profile": "moderate-high for business time series with seasonality",
+      "pros": [
+        "Handles missing data and outliers well",
+        "Easy to incorporate holidays/seasonality",
+        "Less manual tuning than ARIMA"
+      ],
+      "cons": [
+        "Less flexible for non-business time series patterns",
+        "Can underperform deep learning models on complex sequences"
+      ],
+      "preprocessing_needs": [
+        "minimal - handles missing data natively"
+      ],
+      "tags": [
+        "time_series",
+        "forecasting",
+        "business_data",
+        "seasonality"
+      ]
+    },
+    {
+      "id": "lstm",
+      "name": "LSTM (Recurrent Neural Network)",
+      "problem_type": [
+        "time_series",
+        "classification",
+        "regression"
+      ],
+      "description": "A recurrent neural network architecture capable of learning long-term dependencies in sequential data. Used for complex time series forecasting, sequence classification, or any problem with temporal/sequential structure where classical models like ARIMA fall short, given sufficient data.",
+      "dataset_size_fit": "medium-to-large",
+      "interpretability": "very_low",
+      "speed": "slow_to_train",
+      "accuracy_profile": "high with enough sequential data, overkill on small datasets",
+      "pros": [
+        "Captures long-term temporal dependencies",
+        "Flexible for complex sequential patterns",
+        "Works for multivariate time series"
+      ],
+      "cons": [
+        "Needs substantial data to perform well",
+        "Slow to train, GPU often needed",
+        "Black box, low interpretability",
+        "Many hyperparameters"
+      ],
+      "preprocessing_needs": [
+        "scaling",
+        "sequence windowing",
+        "sufficient data volume"
+      ],
+      "tags": [
+        "deep_learning",
+        "time_series",
+        "sequential_data",
+        "large_data"
+      ]
+    },
+    {
+      "id": "isolation_forest",
+      "name": "Isolation Forest",
+      "problem_type": [
+        "anomaly_detection"
+      ],
+      "description": "An ensemble method that isolates anomalies by randomly partitioning data, with anomalies requiring fewer splits to isolate. Effective for outlier and fraud detection in high-dimensional tabular data without needing labeled anomalies.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "medium",
+      "speed": "fast",
+      "accuracy_profile": "n/a - unsupervised anomaly scoring, evaluated via precision/recall on known anomalies if available",
+      "pros": [
+        "Scales well to high dimensions",
+        "No need for labeled anomaly data",
+        "Fast and efficient"
+      ],
+      "cons": [
+        "Performance depends on contamination parameter guess",
+        "Less effective on very low-dimensional data",
+        "Can struggle with clustered anomalies"
+      ],
+      "preprocessing_needs": [
+        "minimal scaling needed",
+        "encoding categoricals"
+      ],
+      "tags": [
+        "anomaly_detection",
+        "unsupervised",
+        "fraud_detection",
+        "outlier_detection"
+      ]
+    },
+    {
+      "id": "cox_proportional_hazards",
+      "name": "Cox Proportional Hazards (Survival Analysis)",
+      "problem_type": [
+        "survival_analysis"
+      ],
+      "description": "A statistical model for time-to-event data that estimates how features affect the hazard rate over time, handling censored observations where the event hasn't yet occurred. Ideal for medical datasets predicting time until disease progression, patient survival time, or churn timing rather than just whether an event happens, such as time-to-relapse in heart disease patients or time-to-cancellation in subscription data.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "fast",
+      "accuracy_profile": "moderate-high for proportional hazard assumption holding data",
+      "pros": [
+        "Handles censored data natively (patients still alive/active at study end)",
+        "Interpretable hazard ratios",
+        "Standard in medical/clinical research",
+        "Models time-to-event, not just binary outcome"
+      ],
+      "cons": [
+        "Assumes proportional hazards over time (can be violated)",
+        "Less flexible with complex nonlinear feature interactions",
+        "Requires time-to-event + event indicator columns, not just a single target"
+      ],
+      "preprocessing_needs": [
+        "requires duration column + event/censoring indicator column",
+        "scaling recommended",
+        "encoding categoricals"
+      ],
+      "tags": [
+        "survival_analysis",
+        "medical_diagnosis",
+        "time_to_event",
+        "churn_timing",
+        "interpretable"
+      ]
+    },
+    {
+      "id": "random_survival_forest",
+      "name": "Random Survival Forest",
+      "problem_type": [
+        "survival_analysis"
+      ],
+      "description": "A tree-ensemble extension of random forest adapted for time-to-event data, relaxing the proportional hazards assumption required by Cox models. Useful when survival/time-to-event data has complex nonlinear relationships that Cox Proportional Hazards can't capture well, such as multi-factor patient survival prediction.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "medium",
+      "speed": "medium",
+      "accuracy_profile": "high, more flexible than Cox model on nonlinear survival data",
+      "pros": [
+        "No proportional hazards assumption needed",
+        "Handles nonlinear feature interactions",
+        "Provides feature importance for survival prediction"
+      ],
+      "cons": [
+        "Less interpretable than Cox model",
+        "Newer/less standardized tooling than classical survival methods",
+        "Needs duration + event indicator columns"
+      ],
+      "preprocessing_needs": [
+        "requires duration column + event/censoring indicator column",
+        "encoding categoricals"
+      ],
+      "tags": [
+        "survival_analysis",
+        "medical_diagnosis",
+        "nonlinear",
+        "time_to_event"
+      ]
+    },
+    {
+      "id": "gaussian_mixture",
+      "name": "Gaussian Mixture Model (GMM)",
+      "problem_type": [
+        "clustering"
+      ],
+      "description": "A probabilistic clustering method that models data as a mixture of Gaussian distributions, assigning soft cluster membership probabilities rather than hard labels. Useful when clusters overlap or have different shapes/sizes, such as customer segments with fuzzy boundaries or patient subgroup discovery where membership isn't clear-cut.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "medium",
+      "speed": "medium",
+      "accuracy_profile": "n/a - unsupervised, evaluated via log-likelihood/BIC",
+      "pros": [
+        "Soft clustering - gives probability of cluster membership",
+        "Handles elliptical, non-spherical clusters better than KMeans",
+        "Principled probabilistic foundation"
+      ],
+      "cons": [
+        "Requires specifying number of components in advance",
+        "Sensitive to initialization",
+        "Assumes Gaussian-distributed clusters"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling"
+      ],
+      "tags": [
+        "unsupervised",
+        "clustering",
+        "soft_clustering",
+        "probabilistic"
+      ]
+    },
+    {
+      "id": "hierarchical_clustering",
+      "name": "Hierarchical (Agglomerative) Clustering",
+      "problem_type": [
+        "clustering"
+      ],
+      "description": "A clustering method that builds a tree of nested clusters by progressively merging or splitting groups, visualized as a dendrogram. Good for exploratory analysis when the number of clusters is unknown and you want to inspect cluster structure at multiple granularities, such as taxonomy discovery or customer segmentation exploration.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "slow_on_large_data",
+      "accuracy_profile": "n/a - unsupervised, visual/structural evaluation via dendrogram",
+      "pros": [
+        "No need to pre-specify number of clusters",
+        "Dendrogram gives interpretable multi-level cluster structure",
+        "Deterministic results (no random initialization)"
+      ],
+      "cons": [
+        "Computationally expensive on large datasets (O(n^2) or worse)",
+        "Sensitive to choice of distance/linkage metric",
+        "Hard to undo early merge/split decisions"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling",
+        "distance metric selection"
+      ],
+      "tags": [
+        "unsupervised",
+        "clustering",
+        "exploratory",
+        "dendrogram"
+      ]
+    },
+    {
+      "id": "extra_trees",
+      "name": "Extra Trees (Extremely Randomized Trees)",
+      "problem_type": [
+        "classification",
+        "regression"
+      ],
+      "description": "An ensemble similar to random forest but with even more randomization in split selection, often training faster with comparable accuracy. A good alternative to random forest when training speed matters slightly more than squeezing out marginal accuracy gains, common in quick tabular baselines.",
+      "dataset_size_fit": "small-to-large",
+      "interpretability": "medium",
+      "speed": "fast",
+      "accuracy_profile": "high, comparable to random forest, sometimes better on noisy data",
+      "pros": [
+        "Faster training than random forest",
+        "Reduces variance further through extra randomization",
+        "Robust to noisy features"
+      ],
+      "cons": [
+        "Slightly less interpretable than random forest",
+        "Can underperform random forest on very clean structured data"
+      ],
+      "preprocessing_needs": [
+        "minimal scaling needed",
+        "encoding categoricals"
+      ],
+      "tags": [
+        "ensemble",
+        "fast",
+        "tabular_data",
+        "random_forest_alternative"
+      ]
+    },
+    {
+      "id": "one_class_svm",
+      "name": "One-Class SVM",
+      "problem_type": [
+        "anomaly_detection"
+      ],
+      "description": "An adaptation of SVM for unsupervised anomaly detection, learning a boundary around normal data and flagging points outside it as outliers. Useful for fraud or defect detection when you only have examples of 'normal' behavior and very few or no labeled anomalies.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "low",
+      "speed": "slow_on_large_data",
+      "accuracy_profile": "n/a - unsupervised, depends heavily on kernel/nu parameter choice",
+      "pros": [
+        "Works without labeled anomalies",
+        "Effective for novelty detection (only normal class available)",
+        "Kernel trick handles nonlinear boundaries"
+      ],
+      "cons": [
+        "Sensitive to nu and kernel hyperparameters",
+        "Scales poorly with dataset size",
+        "Less interpretable than Isolation Forest"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling"
+      ],
+      "tags": [
+        "anomaly_detection",
+        "unsupervised",
+        "novelty_detection",
+        "fraud_detection"
+      ]
+    },
+    {
+      "id": "local_outlier_factor",
+      "name": "Local Outlier Factor (LOF)",
+      "problem_type": [
+        "anomaly_detection"
+      ],
+      "description": "A density-based anomaly detection method that flags points with significantly lower local density than their neighbors. Good for detecting outliers in data with varying density regions, where a global anomaly threshold (like Isolation Forest uses) wouldn't work well, such as detecting unusual transactions within different customer segments.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "medium",
+      "speed": "medium",
+      "accuracy_profile": "n/a - unsupervised, strong for local/contextual anomalies",
+      "pros": [
+        "Detects local anomalies missed by global methods",
+        "Handles varying density regions well",
+        "No need for labeled anomaly data"
+      ],
+      "cons": [
+        "Sensitive to choice of n_neighbors parameter",
+        "Less scalable than Isolation Forest on very large data",
+        "Harder to interpret anomaly scores across different density regions"
+      ],
+      "preprocessing_needs": [
+        "mandatory scaling"
+      ],
+      "tags": [
+        "anomaly_detection",
+        "unsupervised",
+        "density_based",
+        "local_anomalies"
+      ]
+    },
+    {
+      "id": "bayesian_ridge",
+      "name": "Bayesian Ridge Regression",
+      "problem_type": [
+        "regression"
+      ],
+      "description": "A probabilistic linear regression variant that estimates uncertainty in predictions alongside point estimates, using Bayesian priors on coefficients. Useful when you need confidence intervals on predictions, not just point forecasts, such as risk-sensitive financial or medical estimates with limited data.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "fast",
+      "accuracy_profile": "moderate, similar to ridge but with built-in uncertainty estimates",
+      "pros": [
+        "Provides prediction uncertainty/confidence intervals",
+        "Automatically regularizes via priors, less manual tuning than ridge",
+        "Robust on small datasets"
+      ],
+      "cons": [
+        "Still assumes linear relationships",
+        "Slower than plain linear regression",
+        "Less common tooling/community support"
+      ],
+      "preprocessing_needs": [
+        "scaling recommended",
+        "encoding categoricals"
+      ],
+      "tags": [
+        "regression",
+        "uncertainty_estimation",
+        "probabilistic",
+        "interpretable"
+      ]
+    },
+    {
+      "id": "quantile_regression",
+      "name": "Quantile Regression",
+      "problem_type": [
+        "regression"
+      ],
+      "description": "Estimates conditional quantiles (e.g. median, 90th percentile) of the target instead of just the mean, useful when you care about the full distribution of outcomes rather than a single average prediction. Good for risk estimation, demand forecasting with uncertainty bands, or pricing models needing best/worst case bounds.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "fast",
+      "accuracy_profile": "moderate, depends on quantile loss and chosen quantile",
+      "pros": [
+        "Captures full outcome distribution, not just the mean",
+        "Robust to outliers compared to mean-based regression",
+        "Useful for prediction intervals/risk bounds"
+      ],
+      "cons": [
+        "Less commonly used/understood than mean regression",
+        "Requires choosing quantiles of interest upfront",
+        "Multiple models needed for multiple quantiles"
+      ],
+      "preprocessing_needs": [
+        "scaling recommended",
+        "encoding categoricals"
+      ],
+      "tags": [
+        "regression",
+        "uncertainty_estimation",
+        "risk_estimation",
+        "robust_to_outliers"
+      ]
+    },
+    {
+      "id": "ordinal_regression",
+      "name": "Ordinal Regression",
+      "problem_type": [
+        "classification"
+      ],
+      "description": "A classification approach for predicting ordered categorical outcomes (e.g. low/medium/high risk, star ratings 1-5) where the order between classes matters, unlike standard multiclass classification which ignores ordering. Useful for severity staging in medical data, customer satisfaction ratings, or risk-tier classification.",
+      "dataset_size_fit": "small-to-medium",
+      "interpretability": "high",
+      "speed": "fast",
+      "accuracy_profile": "moderate-high when classes are genuinely ordered",
+      "pros": [
+        "Respects natural ordering between classes",
+        "More appropriate than plain multiclass for ranked categories",
+        "Interpretable thresholds between categories"
+      ],
+      "cons": [
+        "Only applicable when target has meaningful order",
+        "Less commonly implemented in mainstream libraries",
+        "Assumes consistent ordering effect across features"
+      ],
+      "preprocessing_needs": [
+        "scaling recommended",
+        "target must be encoded as ordered categories"
+      ],
+      "tags": [
+        "classification",
+        "ordinal_data",
+        "severity_staging",
+        "ranked_categories"
+      ]
+    }
+  ]
+}

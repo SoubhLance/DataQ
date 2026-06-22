@@ -1,0 +1,84 @@
+query_text,algorithm_id,problem_type
+predict if a patient has heart disease yes or no,logistic_regression,classification
+binary classification for loan default risk,logistic_regression,classification
+simple interpretable model for spam vs not spam,logistic_regression,classification
+I need a model that gives probability scores for churn,logistic_regression,classification
+baseline model for predicting customer will buy or not,logistic_regression,classification
+linear classifier for credit approval,logistic_regression,classification
+I want human readable rules for loan approval,decision_tree,classification
+simple tree based model to explain decisions to non technical stakeholders,decision_tree,classification
+quick interpretable model for house price estimation,decision_tree,regression
+rule based eligibility checker for insurance claims,decision_tree,classification
+explainable model for medical triage decisions,decision_tree,classification
+general purpose model for heart disease prediction,random_forest,classification
+robust model for customer churn with messy tabular data,random_forest,classification
+predict house prices with mixed numeric and categorical features,random_forest,regression
+I don't know which algorithm to use for my tabular dataset,random_forest,classification
+fraud detection on structured transaction data,random_forest,classification
+model that gives feature importance for diabetes prediction,random_forest,classification
+predict employee salary based on experience and education,random_forest,regression
+reliable default choice for classification on csv data,random_forest,classification
+boost my accuracy beyond random forest for disease prediction,xgboost,classification
+best accuracy model for kaggle style tabular competition,xgboost,classification
+high accuracy regression model for sales forecasting,xgboost,regression
+"my baseline model has low accuracy, need something stronger",xgboost,classification
+state of the art gradient boosting for credit scoring,xgboost,classification
+improve accuracy on imbalanced heart disease dataset,xgboost,classification
+fastest model for large dataset with millions of rows,lightgbm,classification
+need quick training on huge tabular dataset,lightgbm,regression
+real time fraud scoring with low latency requirement,lightgbm,classification
+efficient gradient boosting for big data classification,lightgbm,classification
+large scale price prediction with fast inference needed,lightgbm,regression
+dataset has many categorical columns like city and occupation,catboost,classification
+avoid manual one hot encoding for categorical heavy survey data,catboost,classification
+business dataset with lots of text categories and few numeric features,catboost,classification
+predict price with many string category columns without preprocessing,catboost,regression
+small dataset with clear separation between two classes,svm,classification
+high dimensional gene expression classification with few samples,svm,classification
+text classification on small labeled dataset,svm,classification
+small clean dataset regression with kernel trick,svm,regression
+simple baseline model no training needed small dataset,knn,classification
+pattern matching based on nearest similar records,knn,classification
+predict value based on similar historical records small data,knn,regression
+fast spam detection model,naive_bayes,classification
+sentiment analysis on text reviews quick baseline,naive_bayes,classification
+probabilistic classifier for email categorization,naive_bayes,classification
+fast baseline for document classification with sparse features,naive_bayes,classification
+predict continuous house price with simple linear relationship,linear_regression,regression
+baseline regression model for salary prediction,linear_regression,regression
+interpretable model for sales trend estimation,linear_regression,regression
+regression with many correlated features need regularization,ridge_lasso,regression
+automatic feature selection for financial forecasting,ridge_lasso,regression
+reduce overfitting in linear regression with many predictors,ridge_lasso,regression
+classic boosting model for tabular accuracy improvement,gradient_boosting,classification
+sequential boosting model for regression accuracy boost,gradient_boosting,regression
+large dataset with complex nonlinear feature interactions,mlp_neural_network,classification
+deep learning approach for complex tabular regression with lots of data,mlp_neural_network,regression
+tree models plateaued need neural network for more accuracy,mlp_neural_network,classification
+group customers into segments based on behavior,kmeans,clustering
+unsupervised clustering of patients by symptom similarity,kmeans,clustering
+exploratory analysis to find natural groups in data without labels,kmeans,clustering
+detect anomalies and irregular shaped clusters in transaction data,dbscan,clustering
+find fraud patterns without specifying number of clusters,dbscan,clustering
+clustering with noise and outlier detection needed,dbscan,clustering
+predict time until disease progression for patients,cox_proportional_hazards,survival_analysis
+survival analysis with censored patient data,cox_proportional_hazards,survival_analysis
+time to event modeling for churn timing not just yes or no,cox_proportional_hazards,survival_analysis
+nonlinear survival prediction with multiple risk factors,random_survival_forest,survival_analysis
+time to event prediction where cox model assumptions dont hold,random_survival_forest,survival_analysis
+soft clustering with overlapping customer segments,gaussian_mixture,clustering
+probabilistic clustering for fuzzy group membership,gaussian_mixture,clustering
+explore cluster structure without knowing number of groups,hierarchical_clustering,clustering
+dendrogram based clustering for taxonomy discovery,hierarchical_clustering,clustering
+faster alternative to random forest for tabular classification,extra_trees,classification
+quick ensemble model for noisy regression data,extra_trees,regression
+detect anomalies when only normal examples are available,one_class_svm,anomaly_detection
+novelty detection for defect detection in manufacturing,one_class_svm,anomaly_detection
+detect local anomalies in varying density transaction data,local_outlier_factor,anomaly_detection
+contextual outlier detection within customer segments,local_outlier_factor,anomaly_detection
+regression with confidence intervals on predictions,bayesian_ridge,regression
+uncertainty aware prediction for small medical dataset,bayesian_ridge,regression
+predict price range with best and worst case bounds,quantile_regression,regression
+forecast demand with uncertainty bands not just average,quantile_regression,regression
+predict severity stage low medium high in correct order,ordinal_regression,classification
+customer satisfaction rating prediction with ordered categories,ordinal_regression,classification
