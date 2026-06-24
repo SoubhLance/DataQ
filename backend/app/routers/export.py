@@ -34,6 +34,23 @@ async def export_cleaned_file(
     """
     filepath = ExportService.export_dataset(session, format.value)
     
+    # Upload to Supabase Storage and save to exports table
+    from app.services.supabase_service import SupabaseService
+    try:
+        ext = format.value
+        storage_filename = f"{session.session_id}_cleaned.{ext}"
+        storage_path = f"{session.user_id}/{storage_filename}"
+        with open(filepath, "rb") as f:
+            file_bytes = f.read()
+        SupabaseService.upload_file("exports", storage_path, file_bytes)
+        
+        # Save storage path in database
+        db_path = f"exports/{session.user_id}/{storage_filename}"
+        SupabaseService.create_export(session.session_id, ext, db_path)
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(f"Failed to persist file export to Supabase: {e}")
+        
     media_types = {
         ExportFormat.CSV: "text/csv",
         ExportFormat.XLSX: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -61,6 +78,23 @@ async def export_csv_post(
     # Force retrieve session matching request query parameter
     session = get_session(session_id)
     filepath = ExportService.export_dataset(session, "csv")
+    
+    # Upload to Supabase Storage and save to exports table
+    from app.services.supabase_service import SupabaseService
+    try:
+        storage_filename = f"{session.session_id}_cleaned.csv"
+        storage_path = f"{session.user_id}/{storage_filename}"
+        with open(filepath, "rb") as f:
+            file_bytes = f.read()
+        SupabaseService.upload_file("exports", storage_path, file_bytes)
+        
+        # Save storage path in database
+        db_path = f"exports/{session.user_id}/{storage_filename}"
+        SupabaseService.create_export(session.session_id, "csv", db_path)
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(f"Failed to persist CSV export to Supabase: {e}")
+        
     return FileResponse(
         filepath, 
         filename=f"cleaned_{session.filename}", 
@@ -110,15 +144,38 @@ async def get_pipeline_code(
     if format == PipelineFormat.PANDAS:
         code = PipelineService.get_pandas_script(session)
         content_type = "text/plain"
+        suffix = ".py"
+        db_format = "python"
     elif format == PipelineFormat.SKLEARN:
         code = PipelineService.get_sklearn_pipeline(session)
         content_type = "text/plain"
+        suffix = ".py"
+        db_format = "python"
     elif format == PipelineFormat.NOTEBOOK:
         code = PipelineService.get_jupyter_notebook(session)
         content_type = "application/json"
+        suffix = ".ipynb"
+        db_format = "notebook"
     else: # YAML
         code = PipelineService.get_yaml_recipe(session)
         content_type = "text/yaml"
+        suffix = ".yaml"
+        db_format = "yaml"
+        
+    # Upload to Supabase Storage and save to exports table
+    from app.services.supabase_service import SupabaseService
+    try:
+        storage_filename = f"{session.session_id}_pipeline_{format.value}{suffix}"
+        storage_path = f"{session.user_id}/{storage_filename}"
+        code_bytes = code.encode("utf-8")
+        SupabaseService.upload_file("exports", storage_path, code_bytes)
+        
+        # Save storage path in database
+        db_path = f"exports/{session.user_id}/{storage_filename}"
+        SupabaseService.create_export(session.session_id, db_format, db_path)
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(f"Failed to persist pipeline export to Supabase: {e}")
         
     return {
         "format": format.value,

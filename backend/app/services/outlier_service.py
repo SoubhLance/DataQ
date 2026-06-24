@@ -186,8 +186,9 @@ class OutlierService:
             description=f"Applied outlier treatment ({action.value}) on column '{column}' via {method.value}"
         )
         
+        affected_rows = int(outlier_mask.sum()) if len(series_clean) >= 5 else 0
         session.update_dataframe(df)
-        session.operations.append(op)
+        session.add_operation(op, affected_rows=affected_rows)
 
     @staticmethod
     def replay_outliers(df: pd.DataFrame, column: str, method: str, action: str, threshold: float = 3.0, contamination: float = 0.05) -> pd.DataFrame:

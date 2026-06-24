@@ -34,7 +34,7 @@ class ColumnService:
         )
         
         session.update_dataframe(df)
-        session.operations.append(op)
+        session.add_operation(op, affected_rows=len(df))
 
     @staticmethod
     def rename_column(session: SessionState, old_name: str, new_name: str) -> None:
@@ -52,7 +52,7 @@ class ColumnService:
         )
         
         session.update_dataframe(df)
-        session.operations.append(op)
+        session.add_operation(op, affected_rows=len(df))
 
     @staticmethod
     def change_dtype(session: SessionState, column: str, new_dtype: DataType) -> None:
@@ -85,7 +85,7 @@ class ColumnService:
         )
         
         session.update_dataframe(df)
-        session.operations.append(op)
+        session.add_operation(op, affected_rows=len(df))
 
     @staticmethod
     def _label_encode_series(series: pd.Series) -> pd.Series:
@@ -167,7 +167,7 @@ class ColumnService:
         )
         
         session.update_dataframe(df)
-        session.operations.append(op)
+        session.add_operation(op, affected_rows=len(df))
 
     @staticmethod
     def replay_column_op(df: pd.DataFrame, op_type: str, params: Dict[str, Any]) -> pd.DataFrame:

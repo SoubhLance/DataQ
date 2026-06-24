@@ -48,7 +48,14 @@ class PipelineService:
         if not session.operations:
             raise OperationError("Undo", "No operations to undo.")
             
-        # Remove the last operation
+        # Deactivate the last operation in Supabase
+        from app.services.supabase_service import SupabaseService
+        try:
+            SupabaseService.deactivate_last_operation(session.session_id)
+        except Exception as e:
+            logger.warning(f"Failed to deactivate last operation in Supabase: {e}")
+            
+        # Remove the last operation from in-memory active list
         session.operations.pop()
         
         # Rebuild state from scratch

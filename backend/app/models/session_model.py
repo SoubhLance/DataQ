@@ -1,7 +1,10 @@
+import logging
 import pandas as pd
 from datetime import datetime
 from typing import List
 from app.models.operation_model import Operation
+
+logger = logging.getLogger(__name__)
 
 class SessionState:
     """
@@ -12,6 +15,11 @@ class SessionState:
         self.filename: str = filename
         self.created_at: datetime = datetime.now()
         self.last_accessed: datetime = datetime.now()
+        
+        # Supabase database mapping properties
+        from app.utils.supabase_client import get_anonymous_user_id
+        self.user_id: str = get_anonymous_user_id()
+        self.dataset_id: str = None
         
         # Save exact copy of the original dataset for replay/undo
         self.original_df: pd.DataFrame = df.copy()
@@ -37,3 +45,24 @@ class SessionState:
         self.rows = len(new_df)
         self.columns = len(new_df.columns)
         self.touch()
+
+    def add_operation(self, op: Operation, affected_rows: int = 0) -> None:
+        """Add operation to history and persist to Supabase."""
+        self.operations.append(op)
+        self.touch()
+        
+        # Persist to Supabase
+        from app.services.supabase_service import SupabaseService
+        params = dict(op.params or {})
+        params["affected_rows"] = affected_rows
+        params["is_active"] = True
+        
+        try:
+            SupabaseService.create_operation(
+                session_id=self.session_id,
+                step_number=len(self.operations),
+                operation_type=op.type,
+                parameters=params
+            )
+        except Exception as e:
+            logger.warning(f"Failed to persist operation to Supabase for session {self.session_id}: {e}")

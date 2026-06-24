@@ -38,10 +38,22 @@ class Settings(BaseSettings):
         "http://127.0.0.1:3000",
     ]
 
+    # Supabase & Auth
+    SUPABASE_URL: str
+    SUPABASE_SERVICE_KEY: str
+    JWT_SECRET: str
+    SECRET_KEY: str
+    
+    # AI Providers
+    GROQ_API_KEY: str
+    GEMINI_API_KEY: str
+    MISTRAL_API_KEY: str
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
-        case_sensitive=True
+        case_sensitive=True,
+        extra="ignore"
     )
 
 settings = Settings()

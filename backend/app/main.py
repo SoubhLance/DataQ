@@ -28,8 +28,32 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: Start session cache cleanup background worker
+    # Startup: Start session cache cleanup background worker and run integration checks
     logger.info("Initializing application startup sequence...")
+    
+    import sys
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+        
+    # 1. Verify Env Variables
+    # Handled automatically by Pydantic Settings on settings import.
+    
+    # 2. Verify Supabase Connection
+    from app.utils.supabase_client import supabase_client
+    try:
+        supabase_client.table("profiles").select("id").limit(1).execute()
+        print("✓ Supabase connected successfully")
+    except Exception as e:
+        logger.error(f"Failed to connect to Supabase: {e}")
+        raise e
+        
+    # 3. Verify JWT Encode/Decode/Expiration
+    from app.utils.jwt import verify_jwt_module
+    if not verify_jwt_module():
+        raise RuntimeError("JWT verification failed")
+        
     start_cache_cleanup_service(interval_seconds=60)
     yield
     # Shutdown: Stop session cache cleanup background worker

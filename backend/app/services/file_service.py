@@ -53,6 +53,33 @@ class FileService:
             )
             session_state.uploaded_filepath = temp_filepath
             
+            # Persist dataset and session to Supabase
+            from app.services.supabase_service import SupabaseService
+            
+            # 1. Upload file to Supabase Storage 'uploads' bucket
+            with open(temp_filepath, "rb") as f:
+                file_bytes = f.read()
+            storage_path = f"{session_state.user_id}/{session_id}{ext}"
+            SupabaseService.upload_file("uploads", storage_path, file_bytes)
+            
+            # 2. Insert metadata into public.datasets
+            file_type = ext.lstrip('.').lower()
+            db_dataset = SupabaseService.create_dataset(
+                filename=file.filename,
+                rows=len(df),
+                columns=len(df.columns),
+                file_type=file_type,
+                user_id=session_state.user_id
+            )
+            session_state.dataset_id = db_dataset.get("id")
+            
+            # 3. Insert session into public.sessions
+            SupabaseService.create_session(
+                session_id=session_id,
+                dataset_id=session_state.dataset_id,
+                status="active"
+            )
+            
             # Cache the Session State
             cache_manager.set(session_id, session_state)
             return session_state

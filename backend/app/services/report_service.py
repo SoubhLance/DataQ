@@ -84,7 +84,7 @@ class ReportService:
         }
         
         # Write to reports storage folder
-        report_filename = f"{session.session_id}_report.json"
+        report_filename = f"{session.session_id}_quality_report.json"
         report_filepath = os.path.join(settings.REPORTS_DIR, report_filename)
         with open(report_filepath, "w") as f:
             json.dump(report, f, indent=2)
@@ -92,5 +92,20 @@ class ReportService:
         # Track for deletion on expiry/cleanup
         if report_filepath not in session.report_filepaths:
             session.report_filepaths.append(report_filepath)
+            
+        # Upload report to Supabase storage 'reports' bucket and insert database record
+        from app.services.supabase_service import SupabaseService
+        try:
+            storage_path = f"{session.user_id}/{report_filename}"
+            with open(report_filepath, "rb") as f:
+                report_bytes = f.read()
+            SupabaseService.upload_file("reports", storage_path, report_bytes)
+            
+            # Save storage path reports/uid/report.json in database
+            db_path = f"reports/{session.user_id}/{report_filename}"
+            SupabaseService.create_report(session.session_id, db_path)
+        except Exception as e:
+            # Do not crash local execution if Supabase storage/database is unavailable
+            logger.warning(f"Failed to persist report to Supabase for session {session.session_id}: {e}")
             
         return report

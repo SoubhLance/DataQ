@@ -91,8 +91,9 @@ class MissingService:
             description=f"Applied {strategy.value} imputation on column '{column}'" if strategy.value != "drop" else f"Dropped missing values in column '{column}'"
         )
         
+        affected_rows = int(session.current_df[column].isna().sum())
         session.update_dataframe(df)
-        session.operations.append(op)
+        session.add_operation(op, affected_rows=affected_rows)
 
     @staticmethod
     def replay_missing(df: pd.DataFrame, column: str, strategy: str, constant_value: Optional[Any] = None) -> pd.DataFrame:

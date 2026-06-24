@@ -74,7 +74,7 @@ class DuplicateService:
         
         # Update Session
         session.update_dataframe(df_cleaned)
-        session.operations.append(op)
+        session.add_operation(op, affected_rows=len(df) - len(df_cleaned))
 
     @staticmethod
     def replay_remove(df: pd.DataFrame, keep: str) -> pd.DataFrame:

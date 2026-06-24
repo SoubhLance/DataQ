@@ -77,7 +77,7 @@ class ScalingService:
         )
         
         session.update_dataframe(df)
-        session.operations.append(op)
+        session.add_operation(op, affected_rows=len(df))
 
     @staticmethod
     def replay_scaling(df: pd.DataFrame, columns: List[str], method: str) -> pd.DataFrame:
