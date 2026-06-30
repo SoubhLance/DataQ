@@ -393,6 +393,92 @@ create policy "Users can delete own files"
   );
 
 -- ============================================================
+-- 10. RECOMMENDATION FEEDBACK
+-- ============================================================
+create table public.recommendation_feedback (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references public.profiles(id) on delete cascade,
+  session_id uuid not null references public.sessions(id) on delete cascade,
+  recommended_algorithm text not null,
+  accepted boolean not null,
+  created_at timestamptz not null default now()
+);
+
+create index idx_recommendation_feedback_user_id on public.recommendation_feedback(user_id);
+create index idx_recommendation_feedback_session_id on public.recommendation_feedback(session_id);
+
+-- ============================================================
+-- 11. ML RECOMMENDATIONS
+-- ============================================================
+create table public.ml_recommendations (
+  id uuid primary key default gen_random_uuid(),
+  session_id uuid not null references public.sessions(id) on delete cascade,
+  user_id uuid references public.profiles(id) on delete cascade,
+  goal text,
+  top_algorithm text not null,
+  confidence float not null,
+  recommendations jsonb not null default '[]'::jsonb,
+  created_at timestamptz not null default now()
+);
+
+create index idx_ml_recommendations_session_id on public.ml_recommendations(session_id);
+create index idx_ml_recommendations_user_id on public.ml_recommendations(user_id);
+
+-- Enable RLS
+alter table public.recommendation_feedback enable row level security;
+alter table public.ml_recommendations enable row level security;
+
+-- Policies for recommendation_feedback
+create policy "Users can view own recommendation feedback"
+  on public.recommendation_feedback for select
+  using (
+    user_id = auth.uid() or (
+      user_id is null and exists (
+        select 1 from public.sessions s
+        join public.datasets d on d.id = s.dataset_id
+        where s.id = recommendation_feedback.session_id and d.user_id = auth.uid()
+      )
+    )
+  );
+
+create policy "Users can insert own recommendation feedback"
+  on public.recommendation_feedback for insert
+  with check (
+    user_id = auth.uid() or (
+      user_id is null and exists (
+        select 1 from public.sessions s
+        join public.datasets d on d.id = s.dataset_id
+        where s.id = recommendation_feedback.session_id and d.user_id = auth.uid()
+      )
+    )
+  );
+
+-- Policies for ml_recommendations
+create policy "Users can view own ml recommendations"
+  on public.ml_recommendations for select
+  using (
+    user_id = auth.uid() or (
+      user_id is null and exists (
+        select 1 from public.sessions s
+        join public.datasets d on d.id = s.dataset_id
+        where s.id = ml_recommendations.session_id and d.user_id = auth.uid()
+      )
+    )
+  );
+
+create policy "Users can insert own ml recommendations"
+  on public.ml_recommendations for insert
+  with check (
+    user_id = auth.uid() or (
+      user_id is null and exists (
+        select 1 from public.sessions s
+        join public.datasets d on d.id = s.dataset_id
+        where s.id = ml_recommendations.session_id and d.user_id = auth.uid()
+      )
+    )
+  );
+
+-- ============================================================
 -- DONE
 -- After running:
 -- 1. Go to Authentication > Providers, enable Google + GitHub OAuth

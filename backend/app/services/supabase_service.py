@@ -234,3 +234,60 @@ class SupabaseService:
         except Exception as e:
             logger.error(f"Failed to generate signed URL for bucket {bucket_name} at path {storage_path}: {e}")
             raise e
+
+    # --- ML ARCHITECT ---
+    @staticmethod
+    @synchronized
+    def create_recommendation_feedback(
+        session_id: str,
+        recommended_algorithm: str,
+        accepted: bool,
+        user_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """Record user feedback (accepted/rejected) on a recommended algorithm."""
+        data = {
+            "session_id": session_id,
+            "recommended_algorithm": recommended_algorithm,
+            "accepted": accepted,
+        }
+        if user_id:
+            data["user_id"] = user_id
+            
+        try:
+            res = supabase_client.table("recommendation_feedback").insert(data).execute()
+            if res.data:
+                return res.data[0]
+        except Exception as e:
+            logger.error(f"Failed to record recommendation feedback in Supabase: {e}")
+            raise e
+        return {}
+
+    @staticmethod
+    @synchronized
+    def create_ml_recommendation(
+        session_id: str,
+        goal: Optional[str],
+        top_algorithm: str,
+        confidence: float,
+        recommendations: List[Dict[str, Any]],
+        user_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """Record the recommendation results in database."""
+        data = {
+            "session_id": session_id,
+            "goal": goal,
+            "top_algorithm": top_algorithm,
+            "confidence": confidence,
+            "recommendations": recommendations,
+        }
+        if user_id:
+            data["user_id"] = user_id
+            
+        try:
+            res = supabase_client.table("ml_recommendations").insert(data).execute()
+            if res.data:
+                return res.data[0]
+        except Exception as e:
+            logger.error(f"Failed to record ML recommendation in Supabase: {e}")
+            raise e
+        return {}

@@ -214,6 +214,10 @@ app.include_router(task.router, prefix=settings.API_V1_STR)
 if settings.ENABLE_AI:
     app.include_router(agent.router, prefix=settings.API_V1_STR)
 
+# ML Architect Engine
+from app.ml.routers import recommend as ml_recommend
+app.include_router(ml_recommend.router, prefix=settings.API_V1_STR)
+
 @app.get("/")
 async def root():
     return {

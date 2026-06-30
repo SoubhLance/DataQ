@@ -1,0 +1,224 @@
+{
+  "logistic_regression": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "decision_tree_classifier": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "random_forest_classifier": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "extra_trees_classifier": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "xgboost_classifier": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": null,
+    "feature_selection": null
+  },
+  "lightgbm_classifier": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": null,
+    "feature_selection": null
+  },
+  "catboost_classifier": {
+    "scaling": null,
+    "encoding": null,
+    "imputer": null,
+    "feature_selection": null
+  },
+  "svm_classifier": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": "pca"
+  },
+  "knn_classifier": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "naive_bayes": {
+    "scaling": null,
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "mlp_classifier": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "adaboost_classifier": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "gradient_boosting_classifier": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "linear_regression": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "ridge_regression": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "lasso_regression": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "elasticnet_regression": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "random_forest_regressor": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "xgboost_regressor": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": null,
+    "feature_selection": null
+  },
+  "lightgbm_regressor": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": null,
+    "feature_selection": null
+  },
+  "catboost_regressor": {
+    "scaling": null,
+    "encoding": null,
+    "imputer": null,
+    "feature_selection": null
+  },
+  "svr": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": "pca"
+  },
+  "decision_tree_regressor": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "gradient_boosting_regressor": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "kmeans": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "dbscan": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": "pca"
+  },
+  "hierarchical_clustering": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "gaussian_mixture": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "pca": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "umap": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "tsne": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": "pca"
+  },
+  "arima": {
+    "scaling": null,
+    "encoding": null,
+    "imputer": "ffill",
+    "feature_selection": null
+  },
+  "prophet": {
+    "scaling": null,
+    "encoding": null,
+    "imputer": "ffill",
+    "feature_selection": null
+  },
+  "xgboost_timeseries": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "ffill",
+    "feature_selection": null
+  },
+  "lstm": {
+    "scaling": "minmax",
+    "encoding": "label",
+    "imputer": "ffill",
+    "feature_selection": null
+  },
+  "cox_ph": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "imputer": "median",
+    "feature_selection": null
+  },
+  "random_survival_forest": {
+    "scaling": null,
+    "encoding": "label",
+    "imputer": "median",
+    "feature_selection": null
+  }
+}

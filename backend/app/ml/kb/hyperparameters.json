@@ -1,0 +1,280 @@
+{
+  "logistic_regression": {
+    "C": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "penalty": [
+      "l2"
+    ],
+    "solver": [
+      "lbfgs",
+      "liblinear"
+    ]
+  },
+  "decision_tree_classifier": {
+    "max_depth": [
+      3,
+      5,
+      10,
+      null
+    ],
+    "min_samples_split": [
+      2,
+      5,
+      10
+    ]
+  },
+  "random_forest_classifier": {
+    "n_estimators": [
+      100,
+      300,
+      500
+    ],
+    "max_depth": [
+      5,
+      10,
+      20
+    ],
+    "min_samples_split": [
+      2,
+      5,
+      10
+    ]
+  },
+  "extra_trees_classifier": {
+    "n_estimators": [
+      100,
+      300,
+      500
+    ],
+    "max_depth": [
+      5,
+      10,
+      20
+    ],
+    "min_samples_split": [
+      2,
+      5,
+      10
+    ]
+  },
+  "xgboost_classifier": {
+    "n_estimators": [
+      100,
+      200
+    ],
+    "learning_rate": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "max_depth": [
+      3,
+      6,
+      9
+    ]
+  },
+  "lightgbm_classifier": {
+    "n_estimators": [
+      100,
+      200
+    ],
+    "learning_rate": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "num_leaves": [
+      31,
+      63
+    ]
+  },
+  "catboost_classifier": {
+    "iterations": [
+      100,
+      200
+    ],
+    "learning_rate": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "depth": [
+      4,
+      6,
+      8
+    ]
+  },
+  "svm_classifier": {
+    "C": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "kernel": [
+      "rbf",
+      "linear"
+    ]
+  },
+  "knn_classifier": {
+    "n_neighbors": [
+      3,
+      5,
+      7,
+      11
+    ],
+    "weights": [
+      "uniform",
+      "distance"
+    ]
+  },
+  "naive_bayes": {},
+  "mlp_classifier": {},
+  "adaboost_classifier": {},
+  "gradient_boosting_classifier": {},
+  "linear_regression": {},
+  "ridge_regression": {
+    "alpha": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ]
+  },
+  "lasso_regression": {
+    "alpha": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ]
+  },
+  "elasticnet_regression": {
+    "alpha": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ]
+  },
+  "random_forest_regressor": {
+    "n_estimators": [
+      100,
+      300,
+      500
+    ],
+    "max_depth": [
+      5,
+      10,
+      20
+    ],
+    "min_samples_split": [
+      2,
+      5,
+      10
+    ]
+  },
+  "xgboost_regressor": {
+    "n_estimators": [
+      100,
+      200
+    ],
+    "learning_rate": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "max_depth": [
+      3,
+      6,
+      9
+    ]
+  },
+  "lightgbm_regressor": {
+    "n_estimators": [
+      100,
+      200
+    ],
+    "learning_rate": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "num_leaves": [
+      31,
+      63
+    ]
+  },
+  "catboost_regressor": {
+    "iterations": [
+      100,
+      200
+    ],
+    "learning_rate": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "depth": [
+      4,
+      6,
+      8
+    ]
+  },
+  "svr": {
+    "C": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "kernel": [
+      "rbf",
+      "linear"
+    ]
+  },
+  "decision_tree_regressor": {
+    "max_depth": [
+      3,
+      5,
+      10,
+      null
+    ],
+    "min_samples_split": [
+      2,
+      5,
+      10
+    ]
+  },
+  "gradient_boosting_regressor": {},
+  "kmeans": {},
+  "dbscan": {},
+  "hierarchical_clustering": {},
+  "gaussian_mixture": {},
+  "pca": {},
+  "umap": {},
+  "tsne": {},
+  "arima": {},
+  "prophet": {},
+  "xgboost_timeseries": {
+    "n_estimators": [
+      100,
+      200
+    ],
+    "learning_rate": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "max_depth": [
+      3,
+      6,
+      9
+    ]
+  },
+  "lstm": {},
+  "cox_ph": {},
+  "random_survival_forest": {}
+}

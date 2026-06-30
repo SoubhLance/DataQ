@@ -1,0 +1,1351 @@
+[
+  {
+    "id": "logistic_regression",
+    "name": "Logistic Regression",
+    "category": "classification",
+    "description": "Linear model for binary and multiclass classification using log-odds. Fast, interpretable, works well with linearly separable data and as a baseline classifier.",
+    "strengths": [
+      "Fast training",
+      "Highly interpretable",
+      "Probabilistic outputs",
+      "Works well as baseline",
+      "Low memory usage"
+    ],
+    "weaknesses": [
+      "Assumes linear decision boundary",
+      "Poor with complex non-linear relationships",
+      "Sensitive to outliers",
+      "Requires feature scaling"
+    ],
+    "min_samples": 50,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.linear_model.LogisticRegression",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "linear"
+  },
+  {
+    "id": "decision_tree_classifier",
+    "name": "Decision Tree Classifier",
+    "category": "classification",
+    "description": "Tree-based classifier that splits data using feature thresholds. Highly interpretable, handles non-linear relationships, and requires no feature scaling.",
+    "strengths": [
+      "Highly interpretable",
+      "No feature scaling needed",
+      "Handles non-linear data",
+      "Handles mixed types",
+      "Visual explanation via tree plot"
+    ],
+    "weaknesses": [
+      "Prone to overfitting",
+      "Unstable with small changes",
+      "Biased toward dominant classes",
+      "High variance"
+    ],
+    "min_samples": 30,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": true,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.tree.DecisionTreeClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "tree_ensemble"
+  },
+  {
+    "id": "random_forest_classifier",
+    "name": "Random Forest Classifier",
+    "category": "classification",
+    "description": "Ensemble of decision trees using bagging and feature randomization. Robust, handles high-dimensional data, resistant to overfitting, and provides feature importance rankings.",
+    "strengths": [
+      "Robust to overfitting",
+      "Handles high dimensions",
+      "Built-in feature importance",
+      "No scaling needed",
+      "Handles missing values implicitly"
+    ],
+    "weaknesses": [
+      "Less interpretable than single tree",
+      "Slower than linear models",
+      "Large memory footprint",
+      "Can be slow on very large datasets"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": true,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "medium",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.ensemble.RandomForestClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "tree_ensemble"
+  },
+  {
+    "id": "extra_trees_classifier",
+    "name": "Extra Trees Classifier",
+    "category": "classification",
+    "description": "Extremely randomized trees ensemble. Similar to Random Forest but with random split thresholds, making it faster to train while maintaining comparable accuracy.",
+    "strengths": [
+      "Faster than Random Forest",
+      "Less prone to overfitting",
+      "Handles high dimensions",
+      "Built-in feature importance"
+    ],
+    "weaknesses": [
+      "Less interpretable",
+      "Can underperform RF on small datasets",
+      "Memory intensive"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": true,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "fast",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.ensemble.ExtraTreesClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "tree_ensemble"
+  },
+  {
+    "id": "xgboost_classifier",
+    "name": "XGBoost Classifier",
+    "category": "classification",
+    "description": "Gradient boosted decision trees optimized for speed and performance. State-of-the-art for tabular data competitions, handles missing values natively, supports regularization.",
+    "strengths": [
+      "State-of-the-art accuracy",
+      "Handles missing values",
+      "Built-in regularization",
+      "Feature importance",
+      "GPU support"
+    ],
+    "weaknesses": [
+      "Complex hyperparameter tuning",
+      "Less interpretable",
+      "Can overfit with small data",
+      "Slower than RF for small datasets"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": true,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "fast",
+    "accuracy_potential": "very_high",
+    "sklearn_class": "xgboost.XGBClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "lightgbm_classifier",
+    "name": "LightGBM Classifier",
+    "category": "classification",
+    "description": "Gradient boosting framework using leaf-wise tree growth. Extremely fast training, memory efficient, handles large datasets and categorical features natively.",
+    "strengths": [
+      "Very fast training",
+      "Memory efficient",
+      "Native categorical support",
+      "Handles large datasets",
+      "High accuracy"
+    ],
+    "weaknesses": [
+      "Can overfit on small data",
+      "Sensitive to hyperparameters",
+      "Less interpretable",
+      "Leaf-wise growth may overfit"
+    ],
+    "min_samples": 200,
+    "max_features": null,
+    "handles_imbalance": true,
+    "handles_categorical": true,
+    "interpretability": "low",
+    "speed": "fast",
+    "accuracy_potential": "very_high",
+    "sklearn_class": "lightgbm.LGBMClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "catboost_classifier",
+    "name": "CatBoost Classifier",
+    "category": "classification",
+    "description": "Gradient boosting with native categorical feature handling using ordered boosting. Minimal preprocessing needed, robust to overfitting, handles heterogeneous data well.",
+    "strengths": [
+      "Native categorical handling",
+      "No encoding needed",
+      "Robust to overfitting",
+      "Minimal preprocessing",
+      "Built-in GPU support"
+    ],
+    "weaknesses": [
+      "Slower training than LightGBM",
+      "Large model size",
+      "Less community support",
+      "Complex internal mechanics"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": true,
+    "handles_categorical": true,
+    "interpretability": "low",
+    "speed": "medium",
+    "accuracy_potential": "very_high",
+    "sklearn_class": "catboost.CatBoostClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "svm_classifier",
+    "name": "Support Vector Machine (SVM)",
+    "category": "classification",
+    "description": "Finds optimal hyperplane to separate classes with maximum margin. Effective in high-dimensional spaces, uses kernel trick for non-linear boundaries.",
+    "strengths": [
+      "Effective in high dimensions",
+      "Kernel trick for non-linearity",
+      "Robust with clear margins",
+      "Memory efficient for support vectors"
+    ],
+    "weaknesses": [
+      "Slow on large datasets O(n^2)",
+      "Sensitive to feature scaling",
+      "Poor with many categories",
+      "No native probability estimates",
+      "Hard to interpret"
+    ],
+    "min_samples": 50,
+    "max_features": 500,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "slow",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.svm.SVC",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "kernel"
+  },
+  {
+    "id": "knn_classifier",
+    "name": "K-Nearest Neighbors Classifier",
+    "category": "classification",
+    "description": "Instance-based learner that classifies by majority vote of k nearest neighbors. Simple, no training phase, non-parametric, adapts to complex decision boundaries.",
+    "strengths": [
+      "No training phase",
+      "Non-parametric",
+      "Adapts to complex boundaries",
+      "Simple to understand"
+    ],
+    "weaknesses": [
+      "Slow prediction O(n)",
+      "Sensitive to feature scaling",
+      "Curse of dimensionality",
+      "Memory intensive",
+      "Sensitive to irrelevant features"
+    ],
+    "min_samples": 30,
+    "max_features": 100,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "slow",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.neighbors.KNeighborsClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "distance_based"
+  },
+  {
+    "id": "naive_bayes",
+    "name": "Naive Bayes",
+    "category": "classification",
+    "description": "Probabilistic classifier based on Bayes theorem with naive independence assumption. Extremely fast, works well with text data, good baseline for multi-class problems.",
+    "strengths": [
+      "Extremely fast",
+      "Works with small datasets",
+      "Good for text classification",
+      "Probabilistic outputs",
+      "Low memory"
+    ],
+    "weaknesses": [
+      "Naive independence assumption",
+      "Poor with correlated features",
+      "Zero-frequency problem",
+      "Limited expressiveness"
+    ],
+    "min_samples": 20,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": true,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.naive_bayes.GaussianNB",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "bayesian"
+  },
+  {
+    "id": "mlp_classifier",
+    "name": "MLP Classifier (Neural Network)",
+    "category": "classification",
+    "description": "Multi-layer perceptron neural network for classification. Learns complex non-linear relationships through backpropagation. Good for medium-sized datasets with complex patterns.",
+    "strengths": [
+      "Learns complex patterns",
+      "Universal approximator",
+      "Handles non-linearity well",
+      "Flexible architecture"
+    ],
+    "weaknesses": [
+      "Requires feature scaling",
+      "Slow training",
+      "Sensitive to hyperparameters",
+      "Black box model",
+      "Needs large datasets"
+    ],
+    "min_samples": 500,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "slow",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.neural_network.MLPClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "neural"
+  },
+  {
+    "id": "adaboost_classifier",
+    "name": "AdaBoost Classifier",
+    "category": "classification",
+    "description": "Adaptive boosting ensemble that combines weak learners sequentially. Each subsequent learner focuses on previously misclassified samples. Good with shallow decision trees.",
+    "strengths": [
+      "Simple to implement",
+      "Less prone to overfitting than other boosting",
+      "Feature importance",
+      "Works with weak learners"
+    ],
+    "weaknesses": [
+      "Sensitive to noisy data and outliers",
+      "Slow for large datasets",
+      "Weak on multi-class",
+      "Sequential training"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "medium",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.ensemble.AdaBoostClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "gradient_boosting_classifier",
+    "name": "Gradient Boosting Classifier",
+    "category": "classification",
+    "description": "Sequential ensemble that builds trees to minimize loss function gradients. Powerful and flexible, sklearn's native implementation with histogram-based optimization.",
+    "strengths": [
+      "High accuracy",
+      "Built-in feature importance",
+      "Handles mixed features",
+      "Flexible loss functions"
+    ],
+    "weaknesses": [
+      "Slow training",
+      "Sensitive to hyperparameters",
+      "Can overfit",
+      "Sequential nature limits parallelism"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "medium",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.ensemble.GradientBoostingClassifier",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "linear_regression",
+    "name": "Linear Regression",
+    "category": "regression",
+    "description": "Ordinary least squares regression for predicting continuous values. Simplest regression model, highly interpretable with coefficient analysis, fast and reliable baseline.",
+    "strengths": [
+      "Extremely fast",
+      "Highly interpretable",
+      "Coefficient analysis",
+      "Statistical significance tests",
+      "Low computational cost"
+    ],
+    "weaknesses": [
+      "Assumes linearity",
+      "Sensitive to outliers",
+      "Multicollinearity issues",
+      "Cannot capture non-linear relationships"
+    ],
+    "min_samples": 30,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.linear_model.LinearRegression",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "linear"
+  },
+  {
+    "id": "ridge_regression",
+    "name": "Ridge Regression",
+    "category": "regression",
+    "description": "Linear regression with L2 regularization to prevent overfitting. Shrinks coefficients toward zero, handles multicollinearity well, more stable than OLS.",
+    "strengths": [
+      "Handles multicollinearity",
+      "Prevents overfitting",
+      "Stable coefficients",
+      "Fast training",
+      "Interpretable"
+    ],
+    "weaknesses": [
+      "Assumes linearity",
+      "Does not perform feature selection",
+      "Sensitive to scaling",
+      "All features retained"
+    ],
+    "min_samples": 30,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.linear_model.Ridge",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "linear"
+  },
+  {
+    "id": "lasso_regression",
+    "name": "Lasso Regression",
+    "category": "regression",
+    "description": "Linear regression with L1 regularization that drives some coefficients to zero. Performs automatic feature selection, ideal for sparse models and high-dimensional data.",
+    "strengths": [
+      "Automatic feature selection",
+      "Sparse models",
+      "Handles high dimensions",
+      "Interpretable",
+      "Reduces model complexity"
+    ],
+    "weaknesses": [
+      "Assumes linearity",
+      "Selects only one from correlated features",
+      "Unstable with collinear features",
+      "Requires scaling"
+    ],
+    "min_samples": 30,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.linear_model.Lasso",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "linear"
+  },
+  {
+    "id": "elasticnet_regression",
+    "name": "ElasticNet Regression",
+    "category": "regression",
+    "description": "Linear regression combining L1 and L2 regularization. Balances between Lasso's feature selection and Ridge's stability, ideal for correlated high-dimensional datasets.",
+    "strengths": [
+      "Combines L1 and L2 benefits",
+      "Handles correlated features",
+      "Feature selection with stability",
+      "Works with high dimensions"
+    ],
+    "weaknesses": [
+      "Assumes linearity",
+      "Two hyperparameters to tune",
+      "Requires feature scaling",
+      "More complex than Ridge or Lasso alone"
+    ],
+    "min_samples": 30,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.linear_model.ElasticNet",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "linear"
+  },
+  {
+    "id": "random_forest_regressor",
+    "name": "Random Forest Regressor",
+    "category": "regression",
+    "description": "Ensemble of decision trees for regression using bagging. Robust to outliers, handles non-linear relationships, provides feature importance for continuous target prediction.",
+    "strengths": [
+      "Robust to outliers",
+      "Handles non-linearity",
+      "Feature importance",
+      "No scaling needed",
+      "Low overfitting risk"
+    ],
+    "weaknesses": [
+      "Cannot extrapolate beyond training range",
+      "Large memory",
+      "Slower than linear models",
+      "Less interpretable"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "medium",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.ensemble.RandomForestRegressor",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "tree_ensemble"
+  },
+  {
+    "id": "xgboost_regressor",
+    "name": "XGBoost Regressor",
+    "category": "regression",
+    "description": "Gradient boosted trees for regression with built-in regularization. Handles missing values, highly optimized, state-of-the-art performance on structured/tabular data.",
+    "strengths": [
+      "State-of-the-art accuracy",
+      "Handles missing values",
+      "Regularization",
+      "Feature importance",
+      "GPU support"
+    ],
+    "weaknesses": [
+      "Complex tuning",
+      "Less interpretable",
+      "Can overfit small datasets",
+      "Large memory for big ensembles"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "fast",
+    "accuracy_potential": "very_high",
+    "sklearn_class": "xgboost.XGBRegressor",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "lightgbm_regressor",
+    "name": "LightGBM Regressor",
+    "category": "regression",
+    "description": "Leaf-wise gradient boosting for regression. Extremely fast, memory-efficient, scales to millions of rows, handles categorical features natively.",
+    "strengths": [
+      "Very fast training",
+      "Memory efficient",
+      "Native categorical support",
+      "Handles large datasets",
+      "High accuracy"
+    ],
+    "weaknesses": [
+      "Can overfit small data",
+      "Sensitive to hyperparameters",
+      "Leaf-wise growth instability"
+    ],
+    "min_samples": 200,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": true,
+    "interpretability": "low",
+    "speed": "fast",
+    "accuracy_potential": "very_high",
+    "sklearn_class": "lightgbm.LGBMRegressor",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "catboost_regressor",
+    "name": "CatBoost Regressor",
+    "category": "regression",
+    "description": "Gradient boosting with native categorical feature support for regression. Ordered boosting reduces overfitting, minimal preprocessing required.",
+    "strengths": [
+      "Native categorical handling",
+      "Minimal preprocessing",
+      "Robust to overfitting",
+      "GPU support"
+    ],
+    "weaknesses": [
+      "Slower than LightGBM",
+      "Large model size",
+      "Less community support"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": true,
+    "interpretability": "low",
+    "speed": "medium",
+    "accuracy_potential": "very_high",
+    "sklearn_class": "catboost.CatBoostRegressor",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "svr",
+    "name": "Support Vector Regressor (SVR)",
+    "category": "regression",
+    "description": "Support vector machine adapted for regression. Uses epsilon-insensitive loss, effective for small to medium datasets with kernel-based non-linearity.",
+    "strengths": [
+      "Effective in high dimensions",
+      "Kernel trick",
+      "Robust to outliers within epsilon tube",
+      "Memory efficient"
+    ],
+    "weaknesses": [
+      "Slow on large datasets O(n^2)",
+      "Requires feature scaling",
+      "Hard to tune epsilon and C",
+      "Not interpretable"
+    ],
+    "min_samples": 50,
+    "max_features": 500,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "slow",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.svm.SVR",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "kernel"
+  },
+  {
+    "id": "decision_tree_regressor",
+    "name": "Decision Tree Regressor",
+    "category": "regression",
+    "description": "Tree-based model for regression that recursively partitions feature space. Captures non-linear relationships, interpretable, no scaling needed.",
+    "strengths": [
+      "Interpretable",
+      "No scaling needed",
+      "Handles non-linearity",
+      "Fast training"
+    ],
+    "weaknesses": [
+      "Overfits easily",
+      "High variance",
+      "Cannot extrapolate",
+      "Unstable"
+    ],
+    "min_samples": 30,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": true,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.tree.DecisionTreeRegressor",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "tree_ensemble"
+  },
+  {
+    "id": "gradient_boosting_regressor",
+    "name": "Gradient Boosting Regressor",
+    "category": "regression",
+    "description": "Sequential ensemble of regression trees minimizing loss gradients. Sklearn's native implementation, flexible loss functions, good balance of speed and accuracy.",
+    "strengths": [
+      "High accuracy",
+      "Flexible loss functions",
+      "Feature importance",
+      "Handles mixed features"
+    ],
+    "weaknesses": [
+      "Slow sequential training",
+      "Sensitive to hyperparameters",
+      "Can overfit"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "medium",
+    "accuracy_potential": "high",
+    "sklearn_class": "sklearn.ensemble.GradientBoostingRegressor",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "kmeans",
+    "name": "K-Means Clustering",
+    "category": "clustering",
+    "description": "Partition-based clustering that assigns samples to k centroids by minimizing within-cluster variance. Fast, scalable, works well with spherical clusters.",
+    "strengths": [
+      "Fast and scalable",
+      "Simple to understand",
+      "Works well with spherical clusters",
+      "Deterministic with fixed seed"
+    ],
+    "weaknesses": [
+      "Requires k specified upfront",
+      "Assumes spherical clusters",
+      "Sensitive to outliers",
+      "Sensitive to initialization"
+    ],
+    "min_samples": 30,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.cluster.KMeans",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "distance_based"
+  },
+  {
+    "id": "dbscan",
+    "name": "DBSCAN",
+    "category": "clustering",
+    "description": "Density-based clustering that finds core samples in high-density regions. Discovers arbitrary-shaped clusters, identifies noise points, no need to specify number of clusters.",
+    "strengths": [
+      "No k needed",
+      "Finds arbitrary-shaped clusters",
+      "Identifies outliers as noise",
+      "Robust to cluster shape"
+    ],
+    "weaknesses": [
+      "Sensitive to eps and min_samples",
+      "Struggles with varying density",
+      "Slow on large datasets",
+      "Not ideal for high dimensions"
+    ],
+    "min_samples": 50,
+    "max_features": 100,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "medium",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.cluster.DBSCAN",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "distance_based"
+  },
+  {
+    "id": "hierarchical_clustering",
+    "name": "Agglomerative Hierarchical Clustering",
+    "category": "clustering",
+    "description": "Bottom-up clustering that merges closest clusters iteratively. Produces dendrogram for visual analysis, no need to pre-specify k, captures hierarchical structure.",
+    "strengths": [
+      "Dendrogram visualization",
+      "No k needed upfront",
+      "Captures nested structure",
+      "Multiple linkage options"
+    ],
+    "weaknesses": [
+      "Slow O(n^3) without optimization",
+      "Memory intensive O(n^2)",
+      "Cannot undo merges",
+      "Sensitive to noise"
+    ],
+    "min_samples": 30,
+    "max_features": 200,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "slow",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.cluster.AgglomerativeClustering",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "distance_based"
+  },
+  {
+    "id": "gaussian_mixture",
+    "name": "Gaussian Mixture Model (GMM)",
+    "category": "clustering",
+    "description": "Probabilistic clustering assuming data is generated from a mixture of Gaussian distributions. Provides soft cluster assignments with probability estimates.",
+    "strengths": [
+      "Soft cluster assignments",
+      "Probability estimates",
+      "Handles elliptical clusters",
+      "Model selection via BIC/AIC"
+    ],
+    "weaknesses": [
+      "Assumes Gaussian distribution",
+      "Sensitive to initialization",
+      "Requires specifying number of components",
+      "Can converge to local optima"
+    ],
+    "min_samples": 100,
+    "max_features": 200,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "medium",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.mixture.GaussianMixture",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "bayesian"
+  },
+  {
+    "id": "pca",
+    "name": "Principal Component Analysis (PCA)",
+    "category": "dimensionality_reduction",
+    "description": "Linear dimensionality reduction using singular value decomposition. Projects data to lower dimensions while preserving maximum variance. Essential preprocessing step.",
+    "strengths": [
+      "Fast and deterministic",
+      "Preserves maximum variance",
+      "Removes multicollinearity",
+      "Noise reduction"
+    ],
+    "weaknesses": [
+      "Assumes linear relationships",
+      "Components hard to interpret",
+      "Sensitive to scaling",
+      "Information loss"
+    ],
+    "min_samples": 20,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.decomposition.PCA",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "linear"
+  },
+  {
+    "id": "umap",
+    "name": "UMAP",
+    "category": "dimensionality_reduction",
+    "description": "Uniform Manifold Approximation and Projection for non-linear dimensionality reduction. Preserves both local and global structure, faster than t-SNE, suitable for visualization.",
+    "strengths": [
+      "Preserves global structure",
+      "Faster than t-SNE",
+      "Scalable",
+      "Good for visualization",
+      "Handles non-linearity"
+    ],
+    "weaknesses": [
+      "Non-deterministic",
+      "Hyperparameter sensitive",
+      "Can distort distances",
+      "Requires umap-learn package"
+    ],
+    "min_samples": 50,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "medium",
+    "accuracy_potential": "medium",
+    "sklearn_class": "umap.UMAP",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "distance_based"
+  },
+  {
+    "id": "tsne",
+    "name": "t-SNE",
+    "category": "dimensionality_reduction",
+    "description": "Non-linear dimensionality reduction optimized for visualization. Preserves local neighborhood structure, reveals clusters in high-dimensional data.",
+    "strengths": [
+      "Excellent for visualization",
+      "Reveals clusters",
+      "Preserves local structure",
+      "Non-parametric"
+    ],
+    "weaknesses": [
+      "Very slow on large data",
+      "Non-deterministic",
+      "Cannot transform new data",
+      "Perplexity tuning required",
+      "Only for 2D/3D visualization"
+    ],
+    "min_samples": 50,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "slow",
+    "accuracy_potential": "medium",
+    "sklearn_class": "sklearn.manifold.TSNE",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "distance_based"
+  },
+  {
+    "id": "arima",
+    "name": "ARIMA",
+    "category": "time_series",
+    "description": "Auto-Regressive Integrated Moving Average for univariate time series forecasting. Models trends, seasonality, and autocorrelation in temporal data.",
+    "strengths": [
+      "Well-established theory",
+      "Interpretable parameters",
+      "Good for univariate series",
+      "Statistical confidence intervals"
+    ],
+    "weaknesses": [
+      "Univariate only",
+      "Assumes stationarity",
+      "Manual order selection",
+      "Poor with non-linear patterns",
+      "Cannot handle missing values"
+    ],
+    "min_samples": 50,
+    "max_features": 1,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "medium",
+    "accuracy_potential": "medium",
+    "sklearn_class": "statsmodels.tsa.arima.model.ARIMA",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "time_series"
+  },
+  {
+    "id": "prophet",
+    "name": "Prophet",
+    "category": "time_series",
+    "description": "Facebook's additive decomposition model for time series. Handles seasonality, holidays, and trend changes automatically. Robust to missing data and outliers.",
+    "strengths": [
+      "Handles seasonality automatically",
+      "Robust to missing data",
+      "Holiday effects",
+      "Interpretable components",
+      "Easy to use"
+    ],
+    "weaknesses": [
+      "Requires date column",
+      "Not ideal for multi-step ahead",
+      "Can overfit with many changepoints",
+      "Facebook dependency"
+    ],
+    "min_samples": 100,
+    "max_features": 1,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "medium",
+    "accuracy_potential": "medium",
+    "sklearn_class": "prophet.Prophet",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "time_series"
+  },
+  {
+    "id": "xgboost_timeseries",
+    "name": "XGBoost for Time Series",
+    "category": "time_series",
+    "description": "XGBoost adapted for time series with lag features and rolling statistics. Captures non-linear temporal patterns, handles multiple covariates and external regressors.",
+    "strengths": [
+      "Non-linear patterns",
+      "Multiple covariates",
+      "Feature engineering flexibility",
+      "Handles missing values"
+    ],
+    "weaknesses": [
+      "Requires manual lag features",
+      "No native temporal awareness",
+      "Risk of data leakage",
+      "Complex feature engineering"
+    ],
+    "min_samples": 200,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "fast",
+    "accuracy_potential": "high",
+    "sklearn_class": "xgboost.XGBRegressor",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "boosting"
+  },
+  {
+    "id": "lstm",
+    "name": "LSTM (Long Short-Term Memory)",
+    "category": "time_series",
+    "description": "Recurrent neural network with gating mechanisms for sequence modeling. Captures long-term dependencies in time series, handles variable-length sequences.",
+    "strengths": [
+      "Captures long-term dependencies",
+      "Handles sequences",
+      "Non-linear patterns",
+      "Variable-length inputs"
+    ],
+    "weaknesses": [
+      "Slow training",
+      "Requires large data",
+      "Complex architecture",
+      "Hard to tune",
+      "Vanishing gradients still possible"
+    ],
+    "min_samples": 1000,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "low",
+    "speed": "slow",
+    "accuracy_potential": "high",
+    "sklearn_class": "keras.layers.LSTM",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": false,
+      "coefficients": false,
+      "partial_dependence": false,
+      "supports_partial_dependence": false,
+      "supports_permutation_importance": false,
+      "supports_lime": false
+    },
+    "family": "neural"
+  },
+  {
+    "id": "cox_ph",
+    "name": "Cox Proportional Hazards",
+    "category": "survival_analysis",
+    "description": "Semi-parametric survival model that estimates hazard ratios. Standard for time-to-event analysis in medical research, handles censored data.",
+    "strengths": [
+      "Handles censored data",
+      "Interpretable hazard ratios",
+      "No distributional assumption",
+      "Well-established in medical research"
+    ],
+    "weaknesses": [
+      "Proportional hazards assumption",
+      "Linear in log-hazard",
+      "Sensitive to outliers",
+      "Cannot handle time-varying effects easily"
+    ],
+    "min_samples": 100,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "high",
+    "speed": "fast",
+    "accuracy_potential": "medium",
+    "sklearn_class": "lifelines.CoxPHFitter",
+    "explainability": {
+      "shap_support": false,
+      "feature_importance": false,
+      "coefficients": true,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "survival"
+  },
+  {
+    "id": "random_survival_forest",
+    "name": "Random Survival Forest",
+    "category": "survival_analysis",
+    "description": "Ensemble of survival trees for time-to-event prediction. Non-parametric, handles non-linear relationships and censored data without proportional hazards assumption.",
+    "strengths": [
+      "No proportional hazards assumption",
+      "Non-linear relationships",
+      "Feature importance",
+      "Handles censoring"
+    ],
+    "weaknesses": [
+      "Less interpretable than Cox",
+      "Computationally expensive",
+      "Large memory",
+      "Requires specialized package"
+    ],
+    "min_samples": 200,
+    "max_features": null,
+    "handles_imbalance": false,
+    "handles_categorical": false,
+    "interpretability": "medium",
+    "speed": "medium",
+    "accuracy_potential": "high",
+    "sklearn_class": "sksurv.ensemble.RandomSurvivalForest",
+    "explainability": {
+      "shap_support": true,
+      "feature_importance": true,
+      "coefficients": false,
+      "partial_dependence": true,
+      "supports_partial_dependence": true,
+      "supports_permutation_importance": true,
+      "supports_lime": true
+    },
+    "family": "survival"
+  }
+]

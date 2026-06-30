@@ -1,0 +1,224 @@
+{
+  "logistic_regression": {
+    "upgrade": "xgboost_classifier",
+    "fast_alternative": "naive_bayes",
+    "interpretable_alternative": null,
+    "ensemble_partner": "random_forest_classifier"
+  },
+  "decision_tree_classifier": {
+    "upgrade": "random_forest_classifier",
+    "fast_alternative": "naive_bayes",
+    "interpretable_alternative": "logistic_regression",
+    "ensemble_partner": "adaboost_classifier"
+  },
+  "random_forest_classifier": {
+    "upgrade": "xgboost_classifier",
+    "fast_alternative": "extra_trees_classifier",
+    "interpretable_alternative": "decision_tree_classifier",
+    "ensemble_partner": "logistic_regression"
+  },
+  "extra_trees_classifier": {
+    "upgrade": "xgboost_classifier",
+    "fast_alternative": null,
+    "interpretable_alternative": "decision_tree_classifier",
+    "ensemble_partner": "logistic_regression"
+  },
+  "xgboost_classifier": {
+    "upgrade": "lightgbm_classifier",
+    "fast_alternative": "extra_trees_classifier",
+    "interpretable_alternative": "random_forest_classifier",
+    "ensemble_partner": "logistic_regression"
+  },
+  "lightgbm_classifier": {
+    "upgrade": "catboost_classifier",
+    "fast_alternative": "xgboost_classifier",
+    "interpretable_alternative": "random_forest_classifier",
+    "ensemble_partner": "logistic_regression"
+  },
+  "catboost_classifier": {
+    "upgrade": null,
+    "fast_alternative": "lightgbm_classifier",
+    "interpretable_alternative": "random_forest_classifier",
+    "ensemble_partner": "logistic_regression"
+  },
+  "svm_classifier": {
+    "upgrade": "xgboost_classifier",
+    "fast_alternative": "logistic_regression",
+    "interpretable_alternative": "decision_tree_classifier",
+    "ensemble_partner": "random_forest_classifier"
+  },
+  "knn_classifier": {
+    "upgrade": "random_forest_classifier",
+    "fast_alternative": "naive_bayes",
+    "interpretable_alternative": "decision_tree_classifier",
+    "ensemble_partner": "logistic_regression"
+  },
+  "naive_bayes": {
+    "upgrade": "logistic_regression",
+    "fast_alternative": null,
+    "interpretable_alternative": null,
+    "ensemble_partner": "random_forest_classifier"
+  },
+  "mlp_classifier": {
+    "upgrade": "xgboost_classifier",
+    "fast_alternative": "random_forest_classifier",
+    "interpretable_alternative": "logistic_regression",
+    "ensemble_partner": "random_forest_classifier"
+  },
+  "adaboost_classifier": {
+    "upgrade": "xgboost_classifier",
+    "fast_alternative": "random_forest_classifier",
+    "interpretable_alternative": "decision_tree_classifier",
+    "ensemble_partner": "logistic_regression"
+  },
+  "gradient_boosting_classifier": {
+    "upgrade": "xgboost_classifier",
+    "fast_alternative": "random_forest_classifier",
+    "interpretable_alternative": "decision_tree_classifier",
+    "ensemble_partner": "logistic_regression"
+  },
+  "linear_regression": {
+    "upgrade": "ridge_regression",
+    "fast_alternative": null,
+    "interpretable_alternative": null,
+    "ensemble_partner": "random_forest_regressor"
+  },
+  "ridge_regression": {
+    "upgrade": "elasticnet_regression",
+    "fast_alternative": "linear_regression",
+    "interpretable_alternative": "linear_regression",
+    "ensemble_partner": "random_forest_regressor"
+  },
+  "lasso_regression": {
+    "upgrade": "elasticnet_regression",
+    "fast_alternative": "linear_regression",
+    "interpretable_alternative": "linear_regression",
+    "ensemble_partner": "random_forest_regressor"
+  },
+  "elasticnet_regression": {
+    "upgrade": "xgboost_regressor",
+    "fast_alternative": "ridge_regression",
+    "interpretable_alternative": "lasso_regression",
+    "ensemble_partner": "random_forest_regressor"
+  },
+  "random_forest_regressor": {
+    "upgrade": "xgboost_regressor",
+    "fast_alternative": "decision_tree_regressor",
+    "interpretable_alternative": "decision_tree_regressor",
+    "ensemble_partner": "linear_regression"
+  },
+  "xgboost_regressor": {
+    "upgrade": "lightgbm_regressor",
+    "fast_alternative": "random_forest_regressor",
+    "interpretable_alternative": "decision_tree_regressor",
+    "ensemble_partner": "linear_regression"
+  },
+  "lightgbm_regressor": {
+    "upgrade": "catboost_regressor",
+    "fast_alternative": "xgboost_regressor",
+    "interpretable_alternative": "random_forest_regressor",
+    "ensemble_partner": "linear_regression"
+  },
+  "catboost_regressor": {
+    "upgrade": null,
+    "fast_alternative": "lightgbm_regressor",
+    "interpretable_alternative": "random_forest_regressor",
+    "ensemble_partner": "linear_regression"
+  },
+  "svr": {
+    "upgrade": "xgboost_regressor",
+    "fast_alternative": "ridge_regression",
+    "interpretable_alternative": "linear_regression",
+    "ensemble_partner": "random_forest_regressor"
+  },
+  "decision_tree_regressor": {
+    "upgrade": "random_forest_regressor",
+    "fast_alternative": "linear_regression",
+    "interpretable_alternative": null,
+    "ensemble_partner": "linear_regression"
+  },
+  "gradient_boosting_regressor": {
+    "upgrade": "xgboost_regressor",
+    "fast_alternative": "random_forest_regressor",
+    "interpretable_alternative": "decision_tree_regressor",
+    "ensemble_partner": "linear_regression"
+  },
+  "kmeans": {
+    "upgrade": "gaussian_mixture",
+    "fast_alternative": null,
+    "interpretable_alternative": null,
+    "ensemble_partner": null
+  },
+  "dbscan": {
+    "upgrade": "gaussian_mixture",
+    "fast_alternative": "kmeans",
+    "interpretable_alternative": "kmeans",
+    "ensemble_partner": null
+  },
+  "hierarchical_clustering": {
+    "upgrade": "gaussian_mixture",
+    "fast_alternative": "kmeans",
+    "interpretable_alternative": "kmeans",
+    "ensemble_partner": null
+  },
+  "gaussian_mixture": {
+    "upgrade": null,
+    "fast_alternative": "kmeans",
+    "interpretable_alternative": "kmeans",
+    "ensemble_partner": null
+  },
+  "pca": {
+    "upgrade": "umap",
+    "fast_alternative": null,
+    "interpretable_alternative": null,
+    "ensemble_partner": null
+  },
+  "umap": {
+    "upgrade": null,
+    "fast_alternative": "pca",
+    "interpretable_alternative": "pca",
+    "ensemble_partner": null
+  },
+  "tsne": {
+    "upgrade": "umap",
+    "fast_alternative": "pca",
+    "interpretable_alternative": "pca",
+    "ensemble_partner": null
+  },
+  "arima": {
+    "upgrade": "prophet",
+    "fast_alternative": null,
+    "interpretable_alternative": null,
+    "ensemble_partner": "xgboost_timeseries"
+  },
+  "prophet": {
+    "upgrade": "xgboost_timeseries",
+    "fast_alternative": "arima",
+    "interpretable_alternative": "arima",
+    "ensemble_partner": null
+  },
+  "xgboost_timeseries": {
+    "upgrade": "lstm",
+    "fast_alternative": "prophet",
+    "interpretable_alternative": "arima",
+    "ensemble_partner": null
+  },
+  "lstm": {
+    "upgrade": null,
+    "fast_alternative": "xgboost_timeseries",
+    "interpretable_alternative": "arima",
+    "ensemble_partner": null
+  },
+  "cox_ph": {
+    "upgrade": "random_survival_forest",
+    "fast_alternative": null,
+    "interpretable_alternative": null,
+    "ensemble_partner": null
+  },
+  "random_survival_forest": {
+    "upgrade": null,
+    "fast_alternative": "cox_ph",
+    "interpretable_alternative": "cox_ph",
+    "ensemble_partner": null
+  }
+}
